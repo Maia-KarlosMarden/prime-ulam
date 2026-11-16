@@ -1,0 +1,3 @@
+Prime-Ulam v5 (fórmula) {"limite": 296, "como_construido": 132, "v5_formula_original": 285, "G1": [288, [651]], "G2": [288, [451, 23]], "seg": 6}
+5G NR BG1 (Z=56) {"limite": 296, "como_construido": 110, "G1": [287, [397]], "G2": [285, [631, 395]], "seg": 3}
+PEG + acumulador {"limite": 296, "como_construido": 130, "G1": [282, [739]], "G2": [278, [355, 233]], "seg": 3}

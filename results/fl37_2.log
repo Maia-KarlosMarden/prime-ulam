@@ -1,0 +1,3 @@
+PEG + acumulador 0.15 falhas 0/60000  taxa 0.00e+00  IC95% [6.8e-21, 6.4e-05]  (14s)
+PEG + acumulador 0.165 falhas 0/60000  taxa 0.00e+00  IC95% [6.8e-21, 6.4e-05]  (18s)
+PEG + acumulador 0.175 falhas 1/60000  taxa 1.67e-05  IC95% [2.9e-06, 9.4e-05]  (21s)

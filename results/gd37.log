@@ -1,0 +1,6 @@
+p=37 gauss. centros aleatórios    r=16 apagamentos=281/1496 (19.0%): falhas 0/100000 = 0.00e+00
+p=37 gauss. centros na diagonal   r=16 apagamentos=281/1496 (19.0%): falhas 0/100000 = 0.00e+00
+p=37 aleatória                    r=16 apagamentos=281/1496 (19.0%): falhas 0/100000 = 0.00e+00
+p=37 gauss. centros aleatórios    r=16 apagamentos=289/1496 (19.5%): falhas 0/100000 = 0.00e+00
+p=37 gauss. centros na diagonal   r=16 apagamentos=289/1496 (19.5%): falhas 0/100000 = 0.00e+00
+p=37 aleatória                    r=16 apagamentos=289/1496 (19.5%): falhas 0/100000 = 0.00e+00

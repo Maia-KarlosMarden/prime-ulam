@@ -1,0 +1,6 @@
+rodada 0: falhas 78/60000 a 19%, conjuntos novos 45, total 45, peso mínimo coletado 6->22, custo 8.05e-05->1.05e-06, 43s
+rodada 1: falhas 108/60000 a 19%, conjuntos novos 49, total 94, peso mínimo coletado 5->22, custo 1.94e-04->1.07e-06, 84s
+rodada 2: falhas 89/60000 a 19%, conjuntos novos 40, total 134, peso mínimo coletado 5->23, custo 2.74e-04->4.65e-06, 126s
+rodada 3: falhas 103/60000 a 19%, conjuntos novos 54, total 188, peso mínimo coletado 5->37, custo 2.04e-04->1.76e-06, 168s
+rodada 4: falhas 115/60000 a 19%, conjuntos novos 44, total 232, peso mínimo coletado 5->19, custo 3.13e-04->4.53e-06, 211s
+v6 c4 0 rajada garantida 285 g,h (2, 281)

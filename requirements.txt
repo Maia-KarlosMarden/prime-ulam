@@ -1,0 +1,5 @@
+numpy
+openpyxl
+# opcionais
+# sionna
+# raptorq

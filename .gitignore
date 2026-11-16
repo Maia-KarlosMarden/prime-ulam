@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+pudec
+xorbw
+*.o
+.DS_Store

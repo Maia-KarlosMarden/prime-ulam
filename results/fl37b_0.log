@@ -1,0 +1,3 @@
+Prime-Ulam v5 (fórmula) 0.15 falhas 54/400000  taxa 1.35e-04  IC95% [1.0e-04, 1.8e-04]  (141s)
+Prime-Ulam v5 (fórmula) 0.165 falhas 152/400000  taxa 3.80e-04  IC95% [3.2e-04, 4.5e-04]  (184s)
+Prime-Ulam v5 (fórmula) 0.175 falhas 199/400000  taxa 4.98e-04  IC95% [4.3e-04, 5.7e-04]  (157s)

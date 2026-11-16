@@ -1,0 +1,9 @@
+p=37 Prime-Ulam v5 (fórmula)                  n=1480 e=259 (17.5%): falhas 80/150000 = 5.3e-04   só peeling 14.3%
+p=37 v5 + 16 densas, 16 paridades perfuradas  n=1480 e=259 (17.5%): falhas 0/150000 = 0.0e+00   só peeling 0.4%
+p=37 5G NR BG1 (Z=56)                         n=1480 e=259 (17.5%): falhas 10/150000 = 6.7e-05   só peeling 17.5%
+p=37 Prime-Ulam v5 (fórmula)                  n=1480 e=281 (19.0%): falhas 189/150000 = 1.3e-03   só peeling 0.0%
+p=37 v5 + 16 densas, 16 paridades perfuradas  n=1480 e=281 (19.0%): falhas 19/150000 = 1.3e-04   só peeling 0.0%
+p=37 5G NR BG1 (Z=56)                         n=1480 e=281 (19.0%): falhas 285/150000 = 1.9e-03   só peeling 0.0%
+p=37 Prime-Ulam v5 (fórmula)                  n=1480 e=289 (19.5%): falhas 5525/150000 = 3.7e-02   só peeling 0.0%
+p=37 v5 + 16 densas, 16 paridades perfuradas  n=1480 e=289 (19.5%): falhas 3531/150000 = 2.4e-02   só peeling 0.0%
+p=37 5G NR BG1 (Z=56)                         n=1480 e=289 (19.5%): falhas 15989/150000 = 1.1e-01   só peeling 0.0%
