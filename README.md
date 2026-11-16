@@ -50,6 +50,9 @@ Requisitos: Python 3.10+, `numpy`, `openpyxl`; opcionais `sionna` (validação d
 pip install numpy openpyxl            # base
 pip install sionna raptorq            # opcionais
 
+# verificação independente: reconstrói o código a partir das fórmulas do artigo e compara com data/codes/
+python3 -I src/verify/verify_article.py 37 127
+
 # construção final em taxa idêntica, p = 37, 2.000 padrões
 python3 -I src/construction/fair.py src/construction data/5g 37 2000 0.175,0.19,0.195
 
@@ -68,4 +71,4 @@ Os scripts recebem como primeiro argumento a pasta de construção (`src/constru
 
 ## Licença
 
-Todos os direitos reservados até a decisão sobre propriedade intelectual (ver seção 9 do relatório). Não redistribuir.
+Código, dados, relatório e artigo são dedicados ao domínio público pela [CC0 1.0 Universal](LICENSE). Nenhum direito autoral é reservado; o uso é livre, inclusive comercial. A licença não concede direitos sobre marcas nem sobre patentes de terceiros.
