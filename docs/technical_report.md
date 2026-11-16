@@ -1,6 +1,6 @@
 # Prime-Ulam LDPC — Technical Report
 
-November 16, 2026 · Karlos Marden Maia (Kayros Consulting LLC)
+November 16, 2026 · Karlos Marden Maia (Independent Researcher)
 
 ## Executive summary
 
@@ -106,7 +106,7 @@ All numbers below come from simulation on the erasure channel, with exact decodi
 
 The theoretical loss limit is 20%. At 19% loss with 1,480 symbols, Prime-Ulam fails 15 times less often than 5G NR; at 19.5%, 4.5 times less often.
 
-**Error floor.** With 400,000 patterns at 15% and 17.5% loss with 1,480 symbols, the version without the precode showed a floor of about 1e-4 to 5e-4, caused by low-weight codewords formed by degree-3 data symbols. The Gaussian precode eliminated this floor: 0 failures in 150,000 at 17.5% and 0 in 100,000 at 19% and 19.5% in the version with 16 added equations. Whether the geometric centers are better than random dense equations is not established: with 16 equations, random centers, the diagonal centers used in the final code and fully random dense equations all show zero failures in 100,000 patterns at 19% and 19.5%, so at this sample size the variants are indistinguishable. An earlier comparison with 8 equations favored the geometric version, but its log is not in the repository, so it is not relied on here.
+**Error floor.** With 400,000 patterns at 15% and 17.5% loss with 1,480 symbols, the version without the precode showed a floor of about 1e-4 to 5e-4, caused by low-weight codewords formed by degree-3 data symbols. The Gaussian precode eliminated this floor: 0 failures in 150,000 at 17.5% and 0 in 100,000 at 19% and 19.5% in the version with 16 added equations. It is worth stating plainly that, without the precode, the floor of the Prime-Ulam construction is higher than that of the two reference codes: in the same 400,000-pattern measurement the failure rate is 1.35e-4 at 15% loss and 5.0e-4 at 17.5% for Prime-Ulam v5 alone, against 2.25e-5 and 9.75e-5 for 5G NR, and 5e-6 and 7.5e-6 for PEG. The precode is what brings the final code to 0 failures in 150,000 patterns at 17.5%, below the 5G NR rate measured on the same patterns (6.7e-5); the PEG floor (7.5e-6 at 17.5%) is below what 150,000 patterns can resolve, so these data do not establish that the final code beats PEG at that loss. (The final code was not run at 400,000 patterns.) Whether the geometric centers are better than random dense equations is not established: with 16 equations, random centers, the diagonal centers used in the final code and fully random dense equations all show zero failures in 100,000 patterns at 19% and 19.5%, so at this sample size the variants are indistinguishable. An earlier comparison with 8 equations favored the geometric version, but its log is not in the repository, so it is not relied on here.
 
 **Bursts.** The transmission order designed by formula guarantees recovery of any cyclic burst of up to 285 consecutive symbols out of 1,480 (theoretical limit 296) and of up to 1,006 out of 5,080 (limit 1,016, measured on a sample of starting positions). When 5G NR and PEG are given the same send-order search, they reach equivalent values (287 and 282 at 1,480), which shows that burst robustness is a property of the interleaver, available to any good code, and not an exclusive differentiator.
 

@@ -1,6 +1,6 @@
 ---
 title: "Prime-Ulam LDPC: Erasure Codes Generated from Modular Spirals"
-author: "Karlos Marden Maia (Independent Researcher, Marietta, Georgia, USA)"
+author: "Karlos Marden Maia (Independent Researcher)"
 date: "November 2026"
 keywords: [erasure codes, LDPC, Ulam spiral, prime modulus, peeling decoder, Gaussian integers, RaptorQ, 5G NR]
 lang: en
