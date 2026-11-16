@@ -2,7 +2,7 @@
 
 Evolution of the geometric architecture for reconstructing erased bits | November 2026
 
-*Portuguese original: [`pt/briefing_novembro_2026.md`](pt/briefing_novembro_2026.md). This is the starting-point briefing of the project; the final construction is described in [`technical_report.md`](technical_report.md) and in the paper.*
+*This is the starting-point briefing of the project; the final construction is described in [`technical_report.md`](technical_report.md) and in the paper.*
 
 ## **Executive summary**
 

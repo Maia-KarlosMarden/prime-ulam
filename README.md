@@ -1,7 +1,5 @@
 # Prime-Ulam LDPC
 
-*[Português](README.pt.md)*
-
 A family of erasure-correcting codes generated entirely by formula: one prime number and about 70 small integers describe a complete code, with no stored tables or matrices. The construction started from the geometry of the Ulam spiral and evolved into an algebraic structure modulo a prime, with zero length-4 cycles guaranteed by theorem.
 
 **Status (November 2026):** final construction (v5+G) defined and measured against 5G NR, PEG, Reed–Solomon and RaptorQ. Intellectual-property decision made: no patent filing, released under CC0 1.0 (see [License](#license)). Full report in [`docs/technical_report.md`](docs/technical_report.md); paper in [`docs/artigo_zenodo.pdf`](docs/artigo_zenodo.pdf).
@@ -34,7 +32,7 @@ primeulam/   Python package of the prototype (construction, encoder, decoder, CL
 docs/demo/   in-browser demo (HTML + JavaScript, no dependencies)
 tests/       tests (pytest) and Python x JavaScript cross-check
 docs/        technical_report.md (+ .pdf), artigo_zenodo (paper, .md + .pdf),
-             briefing_november_2026.md (starting point); Portuguese originals in docs/pt/
+             briefing_november_2026.md (starting point)
 src/
   construction/  pu3.py (regular v3), v4.py, v5.py (irregular), fair.py (v5+G, final construction), gauss_dense.py
   benchmarks/    compare.py (5G NR + PEG), validate5g.py (against Sionna), floor.py, burst_eq.py,
@@ -44,7 +42,7 @@ src/
 data/
   codes/     parameters of each version (v5_p37.json, v5_p127.json, ...) and exported codes (code_p37.txt, code_p127.txt)
   5g/        5G NR base graphs (TS 38.212), extracted from the Sionna package
-  matrices/  first-generation matrices (xlsx)
+  matrices/  first-generation matrices (xlsx, English README sheet)
 results/     raw outputs (json and log) of all experiments cited in the report
 ```
 
@@ -86,7 +84,7 @@ python3 -I src/benchmarks/validate5g.py
 
 The scripts take as first argument the construction folder (`src/construction`, which holds copies of the parameter JSON files) and as second the folder of the 5G tables (`data/5g`). All seeds are fixed. The three commands above were verified from the repository root.
 
-Note: the comments and console output of the scripts in `src/` are still in Portuguese.
+Note: code comments and console output of the research scripts in `src/` (and the raw logs in `results/`) are in Portuguese; the documentation is in English.
 
 ## License
 
