@@ -8,7 +8,7 @@ exportado em data/codes/code_p{p}.txt (o mesmo que o decodificador em C usa).
 Também verifica:
   - taxa k/n = 0,80 e n = 40p;
   - ausência de ciclos de comprimento 4 na parte esparsa (dados);
-  - padrão de transmissão "4 dados, 1 paridade";
+  - padrão de transmissão "3 dados, 1 paridade" (uma paridade a cada quatro slots);
   - o experimento de grade com módulo composto (16) versus primo (17).
 
 uso (a partir da raiz do repositório):  python3 -I src/verify/verify_article.py [p ...]
@@ -76,7 +76,7 @@ def build_article_code(p):
     At, g, h = len(tarms), D["g"], D["h"]
     tx, t, q = [], 0, 0
     for x in range(n):
-        if (x + 1) * M // n > x * M // n:           # slot de paridade: 4 dados para 1 paridade
+        if (x + 1) * M // n > x * M // n:           # slot de paridade: 3 dados para 1 paridade
             tx.append(K + (h * q) % M); q += 1
         else:                                         # slot de dado
             tx.append(tarms[t % At] * p + (g * t) % p); t += 1
@@ -151,7 +151,7 @@ def check(p):
     # padrão de transmissão: uma paridade a cada quatro slots
     pat = ["P" if v >= K else "D" for v in art["tx"]]
     quads_ok = all(pat[s] == "P" for s in range(3, len(pat), 4)) and not any(pat[s] == "P" for s in range(0, len(pat), 4))
-    print(f"padrão 4 dados / 1 paridade (uma paridade a cada quatro slots): {quads_ok}")
+    print(f"padrão 3 dados / 1 paridade (uma paridade a cada quatro slots): {quads_ok}")
     ok &= quads_ok
 
     # equilíbrio das famílias (quantos braços por família)

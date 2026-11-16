@@ -9,8 +9,8 @@ A family of erasure-correcting codes generated entirely by formula: one prime nu
 | Criterion | Prime-Ulam v5+G | 5G NR LDPC | RaptorQ |
 | --- | --- | --- | --- |
 | Failure at 19% loss, 1,480-symbol block | 1.3e-4 | 1.9e-3 | ~0 |
-| Failure at 17.5% loss, 150,000 patterns | 0 | 10 | 0 |
-| Decoding at 15% loss (1 KB symbols) | 2.5 to 3.7 GB/s, XOR only | similar | ~1 GB/s native, published |
+| Failure at 17.5% loss, 150,000 patterns | 0 | 10 | not measured |
+| Decoding up to 15% loss (1 KB symbols) | 2.5 to 3.7 GB/s, XOR only | similar | ~1 GB/s native, published |
 | Decoding at 19% loss | 0.3 to 0.85 GB/s | slower | ~1 GB/s |
 | Code description | one prime + 34 integers + one 32-row table | standardized tables | tables + generator |
 | Recovery at the exact limit (20%) | fails | fails | 99.5% |

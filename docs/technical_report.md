@@ -4,7 +4,7 @@ November 16, 2026 · Karlos Marden Maia (Kayros Consulting LLC)
 
 ## Executive summary
 
-Prime-Ulam LDPC is a family of erasure-correcting codes generated entirely by formula: a prime number, 34 small integers and one 32-row incidence table (106 memberships) describe a complete code, with no stored parity-check matrix. In the final version, on the erasure channel at rate 0.80, the code recovers the data with a failure rate below 1 in 150,000 at 17.5% loss, outperforms the 5G NR LDPC code in every range measured, and decodes at 2.5 to 3.7 GB/s at losses up to 15%, using only XOR operations.
+Prime-Ulam LDPC is a family of erasure-correcting codes generated entirely by formula: a prime number, 34 small integers and one 32-row incidence table (106 memberships) describe a complete code, with no stored parity-check matrix. In the final version, on the erasure channel at rate 0.80, the code recovers the data with a failure rate below 1 in 150,000 at 17.5% loss, outperforms the 5G NR LDPC code in the moderate-loss regime at 1,480 symbols (and ties it up to 19% loss at 5,080 symbols), and decodes at 2.5 to 3.7 GB/s at losses up to 15%, using only XOR operations.
 
 The idea began as a geometric question: could the Ulam spiral, which arranges the integers in a plane and reveals alignments among the prime numbers, also organize the equations of an error-correcting code? The answer the research found was more precise than the question: what matters is not the position of the primes on the spiral, but the prime as the modulus of the arithmetic that defines the connections. With that principle, the geometry came to guarantee, by construction, the absence of the short cycles that degrade any LDPC code.
 
@@ -42,7 +42,7 @@ Each stage preserved the previous one: the geometry became a theorem, the theore
 
 **Stage 1 — Geometry as a connection rule.** The first matrices used the coordinates of the points on the spiral (x, y, x + y, x − y) to define the equations, with arms, antipodal pairings and radial weightings. This phase established the working thesis: the topology of the matrix, not the weights, decides performance. A single rearrangement of the antipodal pairs took recovery from 4% to 95%, while weight adjustments moved tenths of a point. Algebraic optimization of these matrices (removal of short cycles) reached 97.4% recovery at 15% loss on 320-bit blocks.
 
-**Stage 2 — The prime as modulus.** The decisive advance came from asking why the geometry worked. The answer: when the grid has a prime side, two lines with different slopes cross in at most one point, modulo p. With side 16, the same rule produces 128 cycles of length four; with side 17, none. What the Ulam spiral suggested by image, modular arithmetic guarantees by theorem. The construction became: 16 arms with p radial positions, four spiral families with distinct steps, and each equation gathers the points where radius + step × arm gives the same value modulo p.
+**Stage 2 — The prime as modulus.** The decisive advance came from asking why the geometry worked. The answer: when the grid has a prime side, two lines with different slopes cross in at most one point, modulo p. With side 16, the same rule produces 256 pairs of data symbols sharing two equations (length-4 cycles) in the stage-2 test; with side 17, none. (The final construction repeats the test with ten families: 3,584 pairs for side 16, none for 17.) What the Ulam spiral suggested by image, modular arithmetic guarantees by theorem. The construction became: 16 arms with p radial positions, four spiral families with distinct steps, and each equation gathers the points where radius + step × arm gives the same value modulo p.
 
 **Stage 3 — Everything by formula.** With the algebraic rule, the matrix stopped being stored. One prime, four steps, eight coefficients for the position of the equations in the parity chain and two integers for the transmission order describe the whole code. The parity took the accumulator form (each parity enters two consecutive equations), which doubles the protection of each parity bit at no cost. This version matched the best generic design method (PEG) at all sizes, with 14 integers instead of thousands of indices.
 
@@ -83,7 +83,7 @@ where a_c and b_c are the coefficients that position the equation in the parity 
 
 Each dense equation contains about half of the data and generates a transmitted parity in place of a punctured sparse parity. It is the binary translation of the idea of the complex product by the conjugate: the norm of the Gaussian integer decides the connection.
 
-**Transmission order.** Symbols are sent in the pattern "four data, one parity"; the t-th data symbol occupies arm t mod 32 and radius g·t mod p, and the q-th parity is the one with index h·q mod M. The integers g and h are chosen to maximize the length of the burst that is always recoverable.
+**Transmission order.** Symbols are sent in a repeating pattern of four slots, three data and one parity; the t-th data symbol occupies arm t mod 32 and radius g·t mod p, and the q-th parity is the one with index h·q mod M. The integers g and h are chosen to maximize the length of the burst that is always recoverable.
 
 **Decoding.** First peeling on the sparse equations; when it stalls, the remaining unknowns form a small system, solved by elimination over GF(2) with the dense equations included. Everything is XOR of packets.
 
@@ -106,7 +106,7 @@ All numbers below come from simulation on the erasure channel, with exact decodi
 
 The theoretical loss limit is 20%. At 19% loss with 1,480 symbols, Prime-Ulam fails 15 times less often than 5G NR; at 19.5%, 4.5 times less often.
 
-**Error floor.** With 400,000 patterns at 15% and 17.5% loss with 1,480 symbols, the version without the precode showed a floor of about 1e-4 to 5e-4, caused by low-weight codewords formed by degree-3 data symbols. The Gaussian precode eliminated this floor: 0 failures in 150,000 at 17.5% and 0 in 100,000 at 19% and 19.5% in the version with 16 added equations. The comparison with random dense equations showed that the geometric construction is equal or better (0 to 1 failures against 6, with 8 equations, in 200,000 patterns).
+**Error floor.** With 400,000 patterns at 15% and 17.5% loss with 1,480 symbols, the version without the precode showed a floor of about 1e-4 to 5e-4, caused by low-weight codewords formed by degree-3 data symbols. The Gaussian precode eliminated this floor: 0 failures in 150,000 at 17.5% and 0 in 100,000 at 19% and 19.5% in the version with 16 added equations. Whether the geometric centers are better than random dense equations is not established: with 16 equations, random centers, the diagonal centers used in the final code and fully random dense equations all show zero failures in 100,000 patterns at 19% and 19.5%, so at this sample size the variants are indistinguishable. An earlier comparison with 8 equations favored the geometric version, but its log is not in the repository, so it is not relied on here.
 
 **Bursts.** The transmission order designed by formula guarantees recovery of any cyclic burst of up to 285 consecutive symbols out of 1,480 (theoretical limit 296) and of up to 1,006 out of 5,080 (limit 1,016, measured on a sample of starting positions). When 5G NR and PEG are given the same send-order search, they reach equivalent values (287 and 282 at 1,480), which shows that burst robustness is a property of the interleaver, available to any good code, and not an exclusive differentiator.
 
@@ -121,7 +121,7 @@ The theoretical loss limit is 20%. At 19% loss with 1,480 symbols, Prime-Ulam fa
 
 Up to 15% loss, peeling resolves almost everything with five XORs per symbol. Near the limit, elimination over GF(2) dominates and the cost rises by an order of magnitude.
 
-**Scalability.** Performance improves with block size: at 5,140 symbols the regular by-formula version already recovered 100% at 19%, and the final version showed no failures up to 19.5% in 15,000 patterns. The cost of generating the code for a new size is changing the prime.
+**Scalability.** Performance improves with block size: at 5,140 symbols the regular by-formula version (p = 257) already recovered 99.7% of 300 patterns at 19%, and the final version showed no failures up to 19.5% in 15,000 patterns. The cost of generating the code for a new size is changing the prime.
 
 ## 5. Positioning against established codes
 
@@ -131,7 +131,7 @@ Four references were measured under the same protocol: the 5G NR LDPC code, PEG 
 | --- | --- | --- | --- | --- | --- |
 | Recovery at 19% (1,480 symb.) | 1.3e-4 failure | 1.9e-3 | 5.7e-2 | 0 (optimal) | ~0 (1/256 per overhead symbol) |
 | Recovery at the exact limit (20%) | fails | fails | fails | 100% | 99.5% |
-| Decoding at 15% loss | 2.5 to 3.7 GB/s, XOR only | similar, XOR only | similar | GF(256) arithmetic, slower | ~1 GB/s native, published |
+| Decoding up to 15% loss | 2.5 to 3.7 GB/s, XOR only | similar, XOR only | similar | GF(256) arithmetic, slower | ~1 GB/s native, published |
 | Decoding at 19% loss | 0.3 to 0.85 GB/s | slower than Prime-Ulam | similar | same as at 15% | ~1 GB/s, independent of loss |
 | Code description | one prime + 34 integers + one 32-row table | standardized tables | stored matrix | one generator polynomial | tables + pseudo-random generator |
 | Block sizes | 40p, p prime | 51 values of Z, two base graphs | any | up to 255 symbols in GF(256) | any k |
@@ -169,7 +169,7 @@ None of these pieces is new. What is original is the synthesis: a single geometr
 
 Three contributions deserve to be named:
 
-1. **The Gaussian precode.** Using the norm of Gaussian integers modulo p with the quadratic-residue criterion to define the dense equations of an erasure code is, as far as this research could reach, an undocumented combination. It was born from a geometric intuition (the product by the conjugate as a real coefficient) and proved equal or better than random dense equations in the tests.
+1. **The Gaussian precode.** Using the norm of Gaussian integers modulo p with the quadratic-residue criterion to define the dense equations of an erasure code is, as far as this research could reach, an undocumented combination. It was born from a geometric intuition (the product by the conjugate as a real coefficient) and, in the tests, was indistinguishable from random dense equations at the sample sizes used (Section 4).
 2. **The methodological trajectory.** The project started from a hypothesis about the primes, tested it against random controls, identified the real mechanism (the prime as modulus) and rebuilt the code from it. This path, documented with code and data, has didactic value of its own.
 3. **The rigorous comparison.** Few independent works compare a new construction with 5G NR validated against a reference implementation, with PEG, with real RaptorQ and with Reed–Solomon, at identical rate and with the same loss patterns. The protocol is reproducible and is part of the contribution.
 
@@ -224,24 +224,17 @@ The limitations below delimit what the results support. None of them invalidates
 4. An implementation on a small FPGA and measurement of energy per symbol, aimed at the satellite niche.
 5. Comparison with the CCSDS standard and with local repair codes used in storage.
 
-## 9. Intellectual property and publication
+## 9. Scope and release
 
-The decision between patenting and opening must come before any publication, because publishing first destroys novelty in most jurisdictions. This section is not legal advice; it is what the technical facts allow one to say, and the recommendation is to consult a patent agent before acting.
+The author does not intend to file a patent. The construction, the code, the data and this report are released under CC0 1.0 Universal (public-domain dedication), so that the method is public, documented and reproducible. Publication also serves as prior art: a public, dated description of the construction makes it harder for others to obtain a patent on the same construction later. CC0 neither grants nor removes patent rights; the statement that no patent will be filed is a declaration of intent, not a license. No legal analysis of patentability is given or implied.
 
-**What weighs against a broad patent.** Every piece of the construction has a relative published more than twenty years ago (section 6): array codes, IRA codes, irregular LDPC, dense precodes, affine interleavers. An examiner tends to see the synthesis as an obvious combination of known techniques, and a competitor could work around a synthesis patent by swapping one piece. Moreover, the erasure-code market is dominated by open standards and public-domain codes; RaptorQ, even though patented, prevailed only because it is rateless and nearly optimal, properties that Prime-Ulam does not have.
+The reasoning behind the decision, in short:
 
-**What could support a narrow patent.** The Gaussian precode (dense equations by norm of Gaussian integers modulo p and quadratic residue, coupled to a sparse part by spirals modulo the same prime) is the piece with the lowest chance of direct prior art. A claim centered on it, plus the method of generating code, interleaver and precode from a single prime, is what is worth submitting to a professional prior-art search. The cost of a search is small compared with the cost of an application.
+- Every piece of the construction has a relative published more than twenty years ago (Section 6), so a broad patent is unlikely to survive examination, and a competitor could work around a synthesis patent by swapping one piece.
+- The erasure-code market is dominated by open standards and public-domain codes. RaptorQ prevailed despite its patents because it is rateless and nearly optimal, properties Prime-Ulam does not have, so royalties are improbable.
+- The most realistic return is indirect: technical credibility, citations and consulting in error correction for satellites and IoT.
 
-**Royalties are unlikely.** Even with a granted patent, licensing would require someone to prefer paying for Prime-Ulam over using Reed–Solomon or an open LDPC code. That would only happen in a niche where the advantage in speed and simplicity were decisive and proven on real hardware, which has not yet been done. The most realistic path to a return is indirect: technical credibility, consulting in error correction for satellites and IoT, and eventual implementation under contract.
-
-**Recommended order**
-
-1. Professional prior-art search on the Gaussian precode and on integrated generation from a single prime (weeks, low cost).
-2. If the search indicates room: a US provisional application, which secures the date for twelve months at low cost and allows publishing afterwards. Brazil also provides a twelve-month grace period for disclosure by the inventor, but most of Europe and Asia do not.
-3. If the search indicates no room, or if the decision is to open: publication on GitHub under a permissive license (decided: CC0 1.0 for code, data and text, with no patent filing; Apache 2.0 or MIT were the alternatives considered), technical report on arXiv (cs.IT section) and DOI registration via Zenodo. This creates prior art in your favor, prevents third parties from patenting the same thing, and is what brings citations and visibility.
-4. In any case: do not publish anything publicly (repository, preprint, presentation) before completing items 1 and 2.
-
-**What the repository should contain, when it is opened.** Formula-based generation code, C decoder, scripts for all benchmarks with fixed seeds, the exported matrices, the report and a README that repeats the positioning table without exaggeration. Credibility comes from reproducibility and from frankness about the limits.
+**What the repository contains.** Formula-based generation code, the C decoder, scripts for all benchmarks with fixed seeds, the exported codes, the raw results, the paper and this report, plus a prototype (Python package, command-line tool and in-browser demo) so that third parties can test the claims themselves; see `TESTING.md`.
 
 ## Appendix: experimental protocol and reproducibility
 

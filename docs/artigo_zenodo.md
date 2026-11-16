@@ -171,7 +171,7 @@ Four references were measured under the same protocol: the 5G NR LDPC, PEG (a re
 |---|---|---|---|---|---|
 | Failure at 19% (1,480 symbols) | $1.3\times10^{-4}$ | $1.9\times10^{-3}$ | $5.7\times10^{-2}$ | none (optimal) | about 0 (about 1/256 per symbol of overhead) |
 | Recovery at exact limit (20%) | fails | fails | fails | 100% | 99.5% |
-| Decoding at 15% loss | 2.5 to 3.7 GB/s, XOR only | similar, XOR only | similar | GF(256) arithmetic, slower | about 1 GB/s native (published) |
+| Decoding up to 15% loss | 2.5 to 3.7 GB/s, XOR only | similar, XOR only | similar | GF(256) arithmetic, slower | about 1 GB/s native (published) |
 | Code description | one prime, 34 integers and one 32-row table | standardized tables | stored matrix | one generator polynomial | tables and a pseudo-random generator |
 | Block sizes | $40p$, $p$ prime | 51 lifting sizes, two base graphs | any | up to 255 symbols over GF(256) | any $k$ |
 | Rate | fixed 0.80 (generalization open) | adjustable by puncturing | fixed | adjustable | rateless |
