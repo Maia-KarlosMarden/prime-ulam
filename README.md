@@ -1,90 +1,95 @@
 # Prime-Ulam LDPC
 
-Família de códigos de correção de apagamentos gerada inteiramente por fórmula: um número primo e cerca de 70 inteiros pequenos descrevem um código completo, sem tabelas nem matrizes armazenadas. A construção nasceu da geometria da espiral de Ulam e evoluiu para uma estrutura algébrica módulo um primo, com zero ciclos de comprimento 4 garantidos por teorema.
+*[Português](README.pt.md)*
 
-**Estado (novembro de 2026):** construção final (v5+G) definida e medida contra 5G NR, PEG, Reed–Solomon e RaptorQ. Decisão sobre propriedade intelectual tomada: sem pedido de patente e publicação sob CC0 1.0 (ver [Licença](#licença)). Relatório completo em [`docs/relatorio_tecnico.md`](docs/relatorio_tecnico.md).
+A family of erasure-correcting codes generated entirely by formula: one prime number and about 70 small integers describe a complete code, with no stored tables or matrices. The construction started from the geometry of the Ulam spiral and evolved into an algebraic structure modulo a prime, with zero length-4 cycles guaranteed by theorem.
 
-## Resultado em uma tabela (taxa 0,80, canal de apagamento)
+**Status (November 2026):** final construction (v5+G) defined and measured against 5G NR, PEG, Reed–Solomon and RaptorQ. Intellectual-property decision made: no patent filing, released under CC0 1.0 (see [License](#license)). Full report in [`docs/technical_report.md`](docs/technical_report.md); paper in [`docs/artigo_zenodo.pdf`](docs/artigo_zenodo.pdf).
 
-| Critério | Prime-Ulam v5+G | 5G NR LDPC | RaptorQ |
+## Result in one table (rate 0.80, erasure channel)
+
+| Criterion | Prime-Ulam v5+G | 5G NR LDPC | RaptorQ |
 | --- | --- | --- | --- |
-| Falha a 19% de perda, bloco de 1.480 símbolos | 1,3e-4 | 1,9e-3 | ~0 |
-| Falha a 17,5% de perda, 150.000 padrões | 0 | 10 | 0 |
-| Decodificação a 15% de perda (símbolos de 1 KB) | 2,5 a 3,7 GB/s, só XOR | semelhante | ~1 GB/s nativo publicado |
-| Decodificação a 19% de perda | 0,3 a 0,85 GB/s | mais lenta | ~1 GB/s |
-| Descrição do código | um primo + ~70 inteiros | tabelas padronizadas | tabelas + gerador |
-| Recuperação no limite exato (20%) | falha | falha | 99,5% |
+| Failure at 19% loss, 1,480-symbol block | 1.3e-4 | 1.9e-3 | ~0 |
+| Failure at 17.5% loss, 150,000 patterns | 0 | 10 | 0 |
+| Decoding at 15% loss (1 KB symbols) | 2.5 to 3.7 GB/s, XOR only | similar | ~1 GB/s native, published |
+| Decoding at 19% loss | 0.3 to 0.85 GB/s | slower | ~1 GB/s |
+| Code description | one prime + ~70 integers | standardized tables | tables + generator |
+| Recovery at the exact limit (20%) | fails | fails | 99.5% |
 
-O Prime-Ulam ganha do 5G NR em recuperação e simplicidade; perde do RaptorQ e do Reed–Solomon em garantia de recuperação perto do limite. O nicho é perda moderada (até ~15%), processador modesto e tamanhos de bloco fora dos padrões: satélites pequenos, IoT, armazenamento de borda.
+Prime-Ulam beats 5G NR in recovery and simplicity; it loses to RaptorQ and Reed–Solomon in recovery guarantee near the limit. The niche is moderate loss (up to ~15%), modest processors and block sizes outside the standards: small satellites, IoT, edge storage.
 
-## A construção em cinco linhas
+## The construction in five lines
 
-- **Dados:** 32 braços × p posições radiais (p primo > 32); 2 braços não são transmitidos.
-- **Equações esparsas:** 10 famílias de espirais; o dado (i, j) entra na equação `10·((a_c·((j + s_c·i) mod p) + b_c) mod p) + c` para cada família c do seu braço. Zero ciclos-4 porque p é primo.
-- **Paridade:** acumulador de cadeia fechada; 16 paridades esparsas não são transmitidas.
-- **Pré-código denso:** 16 equações; o dado (i, j) entra na equação k se `(i − a_k)² + (j − b_k)² mod p` é resíduo quadrático (norma de inteiro gaussiano).
-- **Transmissão:** n = 40p símbolos, taxa 0,80, ordem dada por dois inteiros g e h.
+- **Data:** 32 arms × p radial positions (p prime > 32); 2 arms are not transmitted.
+- **Sparse equations:** 10 spiral families; data symbol (i, j) enters equation `10·((a_c·((j + s_c·i) mod p) + b_c) mod p) + c` for each family c of its arm. Zero 4-cycles because p is prime.
+- **Parity:** closed-chain accumulator; 16 sparse parities are not transmitted.
+- **Dense precode:** 16 equations; data symbol (i, j) enters equation k if `(i − a_k)² + (j − b_k)² mod p` is a quadratic residue (norm of a Gaussian integer).
+- **Transmission:** n = 40p symbols, rate 0.80, order given by two integers g and h.
 
-## Estrutura do repositório
+## Repository layout
 
 ```
-primeulam/   pacote Python do protótipo (construção, codificador, decodificador, CLI)
-docs/demo/   demonstração no navegador (HTML + JavaScript, sem dependências)
-tests/       testes (pytest) e verificação cruzada Python x JavaScript
-docs/        relatorio_tecnico.md (+ .pdf), briefing de novembro de 2026 (ponto de partida)
+primeulam/   Python package of the prototype (construction, encoder, decoder, CLI)
+docs/demo/   in-browser demo (HTML + JavaScript, no dependencies)
+tests/       tests (pytest) and Python x JavaScript cross-check
+docs/        technical_report.md (+ .pdf), artigo_zenodo (paper, .md + .pdf),
+             briefing_november_2026.md (starting point); Portuguese originals in docs/pt/
 src/
-  construction/  pu3.py (v3 regular), v4.py, v5.py (irregular), fair.py (v5+G, construção final), gauss_dense.py
-  benchmarks/    compare.py (5G NR + PEG), validate5g.py (contra Sionna), floor.py, burst_eq.py,
+  construction/  pu3.py (regular v3), v4.py, v5.py (irregular), fair.py (v5+G, final construction), gauss_dense.py
+  benchmarks/    compare.py (5G NR + PEG), validate5g.py (against Sionna), floor.py, burst_eq.py,
                  cost_ops.py, rq_bench.py, rq_time.py (RaptorQ), diag.py, dense16.py, v6.py
-  decoder/       pudec.c (decodificador em C), export_code.py, xorbw.c
-  early/         primeira geração (matrizes 64×256 armazenadas): sim.py, test16.py, ctrl.py, improve.py
+  decoder/       pudec.c (C decoder), export_code.py, xorbw.c
+  early/         first generation (stored 64×256 matrices): sim.py, test16.py, ctrl.py, improve.py
 data/
-  codes/     parâmetros de cada versão (v5_p37.json, v5_p127.json, ...) e códigos exportados (code_p37.txt, code_p127.txt)
-  5g/        grafos-base do 5G NR (TS 38.212), extraídos do pacote Sionna
-  matrices/  matrizes da primeira geração (xlsx)
-results/     saídas brutas (json e log) de todos os experimentos citados no relatório
+  codes/     parameters of each version (v5_p37.json, v5_p127.json, ...) and exported codes (code_p37.txt, code_p127.txt)
+  5g/        5G NR base graphs (TS 38.212), extracted from the Sionna package
+  matrices/  first-generation matrices (xlsx)
+results/     raw outputs (json and log) of all experiments cited in the report
 ```
 
-## Teste rápido por terceiros (protótipo)
+## Quick test for third parties (prototype)
 
-Além dos scripts originais, o repositório traz um protótipo para quem quer testar o modelo sem ler o código antigo:
+Besides the original scripts, the repository ships a prototype for anyone who wants to test the model without reading the old code:
 
-- **No navegador, sem instalar nada:** abra `docs/demo/index.html` (ou publique `docs/` no GitHub Pages). Simula perdas, mostra o decodificador trabalhando e reproduz a taxa de falha do artigo.
-- **Linha de comando (Python):** `pip install -e .` e depois `primeulam selftest`, `primeulam simulate --p 37 --loss 0.175 0.195`, ou o ciclo completo com arquivo real: `primeulam encode` → `primeulam lose` → `primeulam decode`.
-- **API Python:** `from primeulam import PrimeUlamCode` (codificador e decodificador reais, só XOR).
-- **Testes automáticos e CI:** `pytest` confere taxa, ausência de ciclos-4, igualdade byte a byte com `data/codes/`, ida e volta de dados e a taxa de falha publicada.
+- **In the browser, nothing to install:** open `docs/demo/index.html` (or publish `docs/` on GitHub Pages). It simulates losses, shows the decoder at work and reproduces the failure rate of the paper.
+- **Command line (Python):** `pip install -e .`, then `primeulam selftest`, `primeulam simulate --p 37 --loss 0.175 0.195`, or the full cycle with a real file: `primeulam encode` → `primeulam lose` → `primeulam decode`.
+- **Python API:** `from primeulam import PrimeUlamCode` (real encoder and decoder, XOR only).
+- **Automated tests and CI:** `pytest` checks the rate, absence of 4-cycles, byte-for-byte equality with `data/codes/`, data round trips and the published failure rate.
 
-O roteiro completo, com "o que o artigo afirma → como verificar", está em [`TESTING.md`](TESTING.md). Relatos de teste (inclusive os que discordam do artigo) entram como issues com o modelo *Test report*.
+The full guide, with "what the paper claims → how to check it", is in [`TESTING.md`](TESTING.md). Test reports (including those that disagree with the paper) go in as issues using the *Test report* template.
 
-## Reproduzir
+## Reproduce
 
-Requisitos: Python 3.10+, `numpy`, `openpyxl`; opcionais `sionna` (validação do 5G) e `raptorq` (benchmark RaptorQ); gcc para o decodificador.
+Requirements: Python 3.10+, `numpy`, `openpyxl`; optional `sionna` (5G validation) and `raptorq` (RaptorQ benchmark); gcc for the decoder.
 
 ```bash
 pip install numpy openpyxl            # base
-pip install sionna raptorq            # opcionais
+pip install sionna raptorq            # optional
 
-# verificação independente: reconstrói o código a partir das fórmulas do artigo e compara com data/codes/
+# independent check: rebuilds the code from the formulas of the paper and compares with data/codes/
 python3 -I src/verify/verify_article.py 37 127
 
-# construção final em taxa idêntica, p = 37, 2.000 padrões
+# final construction at identical rate, p = 37, 2,000 patterns
 python3 -I src/construction/fair.py src/construction data/5g 37 2000 0.175,0.19,0.195
 
-# piso de erro (código 0 = Prime-Ulam, 1 = 5G NR, 2 = PEG)
+# error floor (code 0 = Prime-Ulam, 1 = 5G NR, 2 = PEG)
 python3 -I src/benchmarks/floor.py src/construction data/5g 37 20000 0.15,0.175 0
 
-# decodificador em C: tempo e XORs por símbolo
+# C decoder: time and XORs per symbol
 gcc -O3 -march=native -o pudec src/decoder/pudec.c
 ./pudec data/codes/code_p37.txt 1024 200 0.10,0.15,0.17,0.19
 
-# validar a montagem do 5G NR contra o Sionna
+# validate the 5G NR assembly against Sionna
 python3 -I src/benchmarks/validate5g.py
 ```
 
-Os scripts recebem como primeiro argumento a pasta de construção (`src/construction`, que contém cópias dos JSON de parâmetros) e como segundo a pasta das tabelas 5G (`data/5g`). Todas as sementes são fixas. Os três comandos acima foram verificados a partir da raiz do repositório.
+The scripts take as first argument the construction folder (`src/construction`, which holds copies of the parameter JSON files) and as second the folder of the 5G tables (`data/5g`). All seeds are fixed. The three commands above were verified from the repository root.
 
-## Licença
+Note: the comments and console output of the scripts in `src/` are still in Portuguese.
 
-Código, dados, relatório e artigo são dedicados ao domínio público pela [CC0 1.0 Universal](LICENSE), uma única licença para tudo (a mesma do artigo, de `pyproject.toml` e do protótipo). Nenhum direito autoral é reservado; o uso é livre, inclusive comercial.
+## License
 
-Duas precisões: (1) a CC0 não concede nem retira direitos de patente: o autor declara que **não pretende depositar patente** (artigo, seção 9), e a publicação datada serve também como anterioridade; (2) a licença não concede direitos sobre marcas nem sobre patentes de terceiros (por exemplo, as essenciais do 5G NR citadas na comparação).
+Code, data, report and paper are dedicated to the public domain under [CC0 1.0 Universal](LICENSE), a single license for everything (the same as the paper, `pyproject.toml` and the prototype). No copyright is reserved; use is free, including commercial use.
+
+Two clarifications: (1) CC0 neither grants nor removes patent rights: the author declares that the author **does not intend to file a patent** (paper, section 9), and the dated publication also serves as prior art; (2) the license grants no rights over trademarks or third-party patents (for example, those essential to 5G NR cited in the comparison).

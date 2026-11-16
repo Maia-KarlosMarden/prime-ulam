@@ -73,7 +73,7 @@ Python code by `pytest tests/test_js_crosscheck.py`, which needs Node). It can b
 
 ## 5. Reproducing the paper's tables
 
-The original scripts are untouched; see the README ("Reproduzir") and Section 10 of the paper.
+The original scripts are untouched; see the README ("Reproduce") and Section 10 of the paper.
 `results/` has the raw logs the paper quotes.
 
 ## 6. Speed (C decoder)
