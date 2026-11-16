@@ -1,6 +1,6 @@
 # Prime-Ulam LDPC
 
-A family of erasure-correcting codes generated entirely by formula: one prime number and about 70 small integers describe a complete code, with no stored tables or matrices. The construction started from the geometry of the Ulam spiral and evolved into an algebraic structure modulo a prime, with zero length-4 cycles guaranteed by theorem.
+A family of erasure-correcting codes generated entirely by formula: one prime number, 34 small integers and one 32-row incidence table describe a complete code, with no stored parity-check matrix. The construction started from the geometry of the Ulam spiral and evolved into an algebraic structure modulo a prime, with zero length-4 cycles guaranteed by theorem.
 
 **Status (November 2026):** final construction (v5+G) defined and measured against 5G NR, PEG, Reed–Solomon and RaptorQ. Intellectual-property decision made: no patent filing, released under CC0 1.0 (see [License](#license)). Full report in [`docs/technical_report.md`](docs/technical_report.md); paper in [`docs/artigo_zenodo.pdf`](docs/artigo_zenodo.pdf).
 
@@ -12,7 +12,7 @@ A family of erasure-correcting codes generated entirely by formula: one prime nu
 | Failure at 17.5% loss, 150,000 patterns | 0 | 10 | 0 |
 | Decoding at 15% loss (1 KB symbols) | 2.5 to 3.7 GB/s, XOR only | similar | ~1 GB/s native, published |
 | Decoding at 19% loss | 0.3 to 0.85 GB/s | slower | ~1 GB/s |
-| Code description | one prime + ~70 integers | standardized tables | tables + generator |
+| Code description | one prime + 34 integers + one 32-row table | standardized tables | tables + generator |
 | Recovery at the exact limit (20%) | fails | fails | 99.5% |
 
 Prime-Ulam beats 5G NR in recovery and simplicity; it loses to RaptorQ and Reed–Solomon in recovery guarantee near the limit. The niche is moderate loss (up to ~15%), modest processors and block sizes outside the standards: small satellites, IoT, edge storage.

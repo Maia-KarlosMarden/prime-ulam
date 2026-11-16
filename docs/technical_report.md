@@ -4,7 +4,7 @@ November 16, 2026 · Karlos Marden Maia (Kayros Consulting LLC)
 
 ## Executive summary
 
-Prime-Ulam LDPC is a family of erasure-correcting codes generated entirely by formula: a prime number and about 70 small integers describe a complete code, with no stored tables or matrices. In the final version, on the erasure channel at rate 0.80, the code recovers the data with a failure rate below 1 in 150,000 at 17.5% loss, outperforms the 5G NR LDPC code in every range measured, and decodes at 2.5 to 3.7 GB/s at losses up to 15%, using only XOR operations.
+Prime-Ulam LDPC is a family of erasure-correcting codes generated entirely by formula: a prime number, 34 small integers and one 32-row incidence table (106 memberships) describe a complete code, with no stored parity-check matrix. In the final version, on the erasure channel at rate 0.80, the code recovers the data with a failure rate below 1 in 150,000 at 17.5% loss, outperforms the 5G NR LDPC code in every range measured, and decodes at 2.5 to 3.7 GB/s at losses up to 15%, using only XOR operations.
 
 The idea began as a geometric question: could the Ulam spiral, which arranges the integers in a plane and reveals alignments among the prime numbers, also organize the equations of an error-correcting code? The answer the research found was more precise than the question: what matters is not the position of the primes on the spiral, but the prime as the modulus of the arithmetic that defines the connections. With that principle, the geometry came to guarantee, by construction, the absence of the short cycles that degrade any LDPC code.
 
@@ -87,7 +87,7 @@ Each dense equation contains about half of the data and generates a transmitted 
 
 **Decoding.** First peeling on the sparse equations; when it stalls, the remaining unknowns form a small system, solved by elimination over GF(2) with the dense equations included. Everything is XOR of packets.
 
-**Full parameters.** The values of s_c, a_c, b_c, F_i, g and h used in the tests are in `data/codes/v5_p37.json` and `data/codes/v5_p127.json`, and the code exported for the decoder is in `data/codes/code_p37.txt` and `data/codes/code_p127.txt`. There are about 70 integers in all.
+**Full parameters.** The values of s_c, a_c, b_c, F_i, g and h used in the tests are in `data/codes/v5_p37.json` and `data/codes/v5_p127.json`, and the code exported for the decoder is in `data/codes/code_p37.txt` and `data/codes/code_p127.txt`. Besides p there are 34 integers (ten steps, ten coefficients a_c, ten coefficients b_c, the two untransmitted arms, g and h) plus the 32-row incidence table F_i, which is the one ingredient not given by a formula (it was found by a seeded search and is recorded as data).
 
 ## 4. Results
 
@@ -133,7 +133,7 @@ Four references were measured under the same protocol: the 5G NR LDPC code, PEG 
 | Recovery at the exact limit (20%) | fails | fails | fails | 100% | 99.5% |
 | Decoding at 15% loss | 2.5 to 3.7 GB/s, XOR only | similar, XOR only | similar | GF(256) arithmetic, slower | ~1 GB/s native, published |
 | Decoding at 19% loss | 0.3 to 0.85 GB/s | slower than Prime-Ulam | similar | same as at 15% | ~1 GB/s, independent of loss |
-| Code description | one prime + ~70 integers | standardized tables | stored matrix | one generator polynomial | tables + pseudo-random generator |
+| Code description | one prime + 34 integers + one 32-row table | standardized tables | stored matrix | one generator polynomial | tables + pseudo-random generator |
 | Block sizes | 40p, p prime | 51 values of Z, two base graphs | any | up to 255 symbols in GF(256) | any k |
 | Rate | fixed 0.80 (generalizable) | adjustable by puncturing | fixed | adjustable | rateless (generates symbols on demand) |
 | 4-cycles | zero, by theorem | zero, by design | zero, by algorithm | not applicable | not applicable |
