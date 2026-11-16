@@ -238,7 +238,7 @@ A decisão entre patentear e abrir precisa vir antes de qualquer publicação, p
 
 1. Busca de anterioridade profissional sobre o pré-código gaussiano e sobre a geração integrada por um primo (semanas, custo baixo).
 2. Se a busca indicar espaço: pedido provisório nos EUA, que garante a data por doze meses a custo baixo e permite publicar em seguida. O Brasil também prevê período de graça de doze meses para divulgação pelo próprio inventor, mas a maior parte da Europa e da Ásia não.
-3. Se a busca não indicar espaço, ou se a decisão for abrir: publicação no GitHub com licença permissiva (Apache 2.0 ou MIT), relatório técnico no arXiv (seção cs.IT) e registro de DOI via Zenodo. Isso cria anterioridade a seu favor, impede que terceiros patenteiem o mesmo, e é o que dá citações e visibilidade.
+3. Se a busca não indicar espaço, ou se a decisão for abrir: publicação no GitHub com licença permissiva (decidido: CC0 1.0 para código, dados e texto, sem pedido de patente; Apache 2.0 ou MIT foram as alternativas consideradas), relatório técnico no arXiv (seção cs.IT) e registro de DOI via Zenodo. Isso cria anterioridade a seu favor, impede que terceiros patenteiem o mesmo, e é o que dá citações e visibilidade.
 4. Em qualquer caso: não publicar nada público (repositório, preprint, apresentação) antes de concluir os itens 1 e 2.
 
 **O que o repositório deve conter, quando for aberto.** Código de geração por fórmula, decodificador em C, scripts de todos os benchmarks com sementes fixas, as matrizes exportadas, o relatório e um README que repita a tabela de posicionamento sem exagero. A credibilidade vem da reprodutibilidade e da franqueza sobre os limites.

@@ -93,6 +93,10 @@ For another prime p > 32 you must supply a parameter set (`PrimeUlamCode(p, para
 nothing is claimed about the failure rate of an untuned parameter set. Results for new primes are very welcome
 as test reports.
 
-## 8. Reporting
+## 8. License
+
+Everything here (code, data, paper, prototype) is CC0 1.0 Universal, see `LICENSE`: use it freely, including commercially. The author does not intend to file a patent (paper, Section 9). CC0 grants no rights over third-party patents, e.g. those essential to 5G NR.
+
+## 9. Reporting
 
 Open an issue with the **Test report** template. Disagreements with the paper are the most useful reports.

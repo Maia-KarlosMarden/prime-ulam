@@ -2,7 +2,7 @@
 
 Família de códigos de correção de apagamentos gerada inteiramente por fórmula: um número primo e cerca de 70 inteiros pequenos descrevem um código completo, sem tabelas nem matrizes armazenadas. A construção nasceu da geometria da espiral de Ulam e evoluiu para uma estrutura algébrica módulo um primo, com zero ciclos de comprimento 4 garantidos por teorema.
 
-**Estado (novembro de 2026):** construção final (v5+G) definida e medida contra 5G NR, PEG, Reed–Solomon e RaptorQ. Repositório privado; decisão sobre propriedade intelectual pendente. Relatório completo em [`docs/relatorio_tecnico.md`](docs/relatorio_tecnico.md).
+**Estado (novembro de 2026):** construção final (v5+G) definida e medida contra 5G NR, PEG, Reed–Solomon e RaptorQ. Decisão sobre propriedade intelectual tomada: sem pedido de patente e publicação sob CC0 1.0 (ver [Licença](#licença)). Relatório completo em [`docs/relatorio_tecnico.md`](docs/relatorio_tecnico.md).
 
 ## Resultado em uma tabela (taxa 0,80, canal de apagamento)
 
@@ -85,4 +85,6 @@ Os scripts recebem como primeiro argumento a pasta de construção (`src/constru
 
 ## Licença
 
-Código, dados, relatório e artigo são dedicados ao domínio público pela [CC0 1.0 Universal](LICENSE). Nenhum direito autoral é reservado; o uso é livre, inclusive comercial. A licença não concede direitos sobre marcas nem sobre patentes de terceiros.
+Código, dados, relatório e artigo são dedicados ao domínio público pela [CC0 1.0 Universal](LICENSE), uma única licença para tudo (a mesma do artigo, de `pyproject.toml` e do protótipo). Nenhum direito autoral é reservado; o uso é livre, inclusive comercial.
+
+Duas precisões: (1) a CC0 não concede nem retira direitos de patente: o autor declara que **não pretende depositar patente** (artigo, seção 9), e a publicação datada serve também como anterioridade; (2) a licença não concede direitos sobre marcas nem sobre patentes de terceiros (por exemplo, as essenciais do 5G NR citadas na comparação).

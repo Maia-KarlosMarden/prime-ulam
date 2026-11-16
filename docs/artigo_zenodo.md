@@ -222,7 +222,7 @@ These are assessments based on the measured properties, not field tests. None of
 
 # 9. Scope and release
 
-The author does not intend to file a patent. The construction, the code and this paper are released so that the method is public, documented and reproducible. Publication also serves as prior art: a public, dated description of the construction makes it harder for others to obtain a patent on the same construction later. The text, code and data are dedicated to the public domain under CC0 1.0 Universal. No copyright is reserved, and the method is free to use for any purpose.
+The author does not intend to file a patent. The construction, the code and this paper are released so that the method is public, documented and reproducible. Publication also serves as prior art: a public, dated description of the construction makes it harder for others to obtain a patent on the same construction later. The text, code and data are dedicated to the public domain under CC0 1.0 Universal. No copyright is reserved, and the method is free to use for any purpose. CC0 neither grants nor removes patent rights; the statement that the author does not intend to file a patent is a declaration of intent, not a license.
 
 This paper gives no legal analysis of patentability, and none is implied.
 
