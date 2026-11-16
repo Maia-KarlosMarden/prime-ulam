@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prime-Ulam LDPC demo</title>
+<style>
+  :root { --bg:#fafaf7; --fg:#1d1d1b; --mut:#6b6b66; --card:#fff; --line:#dcdcd4; --acc:#1f5fbf;
+          --rx:#9aa3ad; --par:#5b8def; --lost:#d64545; --peel:#2e9e5b; --ge:#e08a1e; --bad:#111; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#16171a; --fg:#ececea; --mut:#9a9a94; --card:#1f2024; --line:#35363b;
+          --acc:#6ea1ff; --rx:#5d6670; --par:#5b8def; --lost:#ef6a6a; --peel:#4cc283; --ge:#f0a23a; --bad:#fff; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.5 system-ui, sans-serif; }
+  main { max-width: 880px; margin: 0 auto; padding: 20px 16px 60px; }
+  h1 { font-size: 1.5rem; margin: .2em 0; } h2 { font-size: 1.1rem; margin: 0 0 .6em; }
+  p.sub { color: var(--mut); margin: 0 0 1.2em; }
+  section { background: var(--card); border:1px solid var(--line); border-radius: 10px; padding: 16px; margin: 14px 0; }
+  label { display:inline-flex; align-items:center; gap:6px; margin: 4px 14px 4px 0; }
+  input[type=number], select, textarea { background: var(--bg); color: var(--fg); border:1px solid var(--line); border-radius:6px; padding:5px 8px; font: inherit; }
+  textarea { width:100%; min-height: 70px; }
+  button { background: var(--acc); color:#fff; border:0; border-radius:6px; padding:7px 14px; font: inherit; cursor:pointer; }
+  button:disabled { opacity:.5; cursor: default; }
+  canvas { width:100%; height:auto; border:1px solid var(--line); border-radius:6px; background:var(--bg); image-rendering: pixelated; }
+  .legend span { display:inline-block; margin-right:12px; font-size:.85rem; color:var(--mut); }
+  .legend i { display:inline-block; width:10px; height:10px; margin-right:4px; vertical-align:-1px; }
+  pre, .out { background: var(--bg); border:1px solid var(--line); border-radius:6px; padding:10px; overflow:auto; font: 13px/1.45 ui-monospace, monospace; white-space: pre-wrap; margin:8px 0 0; }
+  .ok { color: var(--peel); font-weight: 600; } .no { color: var(--lost); font-weight: 600; }
+  small { color: var(--mut); }
+  table { border-collapse: collapse; width:100%; font-size:.9rem; } td, th { text-align:right; padding:3px 8px; border-bottom:1px solid var(--line); } th:first-child, td:first-child { text-align:left; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Prime-Ulam LDPC &mdash; try it in your browser</h1>
+  <p class="sub">Erasure code generated from a prime and 34 integers (no stored parity-check matrix), rate 0.80.
+    Everything below runs locally in JavaScript; it is a port of the Python reference implementation and is
+    cross-checked against it. Paper and code: <a href="https://github.com/Maia-KarlosMarden/prime-ulam">github.com/Maia-KarlosMarden/prime-ulam</a>.</p>
+
+  <section>
+    <h2>Settings</h2>
+    <label>Prime p <select id="p"><option>37</option><option>127</option></select></label>
+    <label>Packet loss <input id="loss" type="number" min="0" max="40" step="0.5" value="15"> %</label>
+    <label>Seed <input id="seed" type="number" value="1" style="width:6em"></label>
+    <div id="info" class="out"></div>
+  </section>
+
+  <section>
+    <h2>1. One erasure pattern</h2>
+    <p><small>Each cell is one transmitted packet, in transmission order (rows of 80; every 4th packet is a parity).
+      The decoder first peels the sparse equations, then solves what is left by Gaussian elimination.</small></p>
+    <button id="one">Lose packets and decode</button>
+    <p class="legend"><span><i style="background:var(--rx)"></i>received data</span><span><i style="background:var(--par)"></i>received parity</span>
+      <span><i style="background:var(--peel)"></i>lost, recovered by peeling</span><span><i style="background:var(--ge)"></i>lost, recovered by Gaussian elimination</span>
+      <span><i style="background:var(--bad)"></i>lost, NOT recovered</span></p>
+    <canvas id="cv" width="800" height="200"></canvas>
+    <div id="oneout" class="out"></div>
+  </section>
+
+  <section>
+    <h2>2. Failure rate (Monte Carlo)</h2>
+    <p><small>Exactly round(loss&times;n) packets are lost uniformly at random; failure = some symbol cannot be recovered
+      (the paper's criterion). Compare with the paper's Section 4.1 (p=37, 150,000 patterns): 0 failures at 17.5%,
+      1.3&times;10<sup>-4</sup> at 19%, 2.4% at 19.5%.</small></p>
+    <label>Patterns per loss <input id="trials" type="number" value="2000" min="10" max="200000" style="width:7em"></label>
+    <label>Losses (%) <input id="losses" value="15, 17.5, 19, 19.5, 20" style="width:14em"></label>
+    <button id="mc">Run</button>
+    <div id="mcout"></div>
+  </section>
+
+  <section>
+    <h2>3. Send a message through a lossy channel</h2>
+    <textarea id="msg">Hello from Prime-Ulam! This text is split into data symbols, encoded, partly destroyed and rebuilt.</textarea>
+    <p><button id="rt">Encode, lose packets, decode</button> <small>(uses the loss % and seed above)</small></p>
+    <div id="rtout" class="out"></div>
+  </section>
+
+  <section>
+    <h2>Reporting results</h2>
+    <p>Found a failure rate that disagrees with the paper, a pattern that should decode and does not, or a bug?
+      Please open an issue with the <b>test report</b> template and include prime, loss, seed and the numbers shown here.</p>
+  </section>
+</main>
+<script src="primeulam.js"></script>
+<script>
+const PARAMS = { 37: {"soma":294.0,"perfil":"b 2P8 + 30x3","MB":10,"masks":[[6,7,9],[4,6,9],[0,2,6],[1,4,5],[0,6,9],[2,6,8],[3,4,9],[1,7,8],[2,4,8],[2,3,4],[0,4,5],[0,7,8],[0,1,2,4,6,7,8,9],[1,3,7],[0,3,5],[0,8,9],[2,3,5],[4,5,7],[1,4,5],[1,3,6],[1,2,8],[5,7,9],[1,3,8],[0,2,3,5,6,7,8,9],[0,5,8],[3,4,6],[1,3,4],[5,7,9],[1,6,8],[0,2,3],[1,2,6],[5,7,9]],"punct":[12,23],"passos":[-15,0,-8,-4,-13,7,1,-5,-7,14],"p":37,"a":[12,17,14,14,7,32,16,29,10,15],"b":[2,17,18,0,8,3,31,27,18,23],"g":20,"h":61}, 127: {"soma":294.0,"perfil":"b 2P8 + 30x3","MB":10,"masks":[[6,7,9],[4,6,9],[0,2,6],[1,4,5],[0,6,9],[2,6,8],[3,4,9],[1,7,8],[2,4,8],[2,3,4],[0,4,5],[0,7,8],[0,1,2,4,6,7,8,9],[1,3,7],[0,3,5],[0,8,9],[2,3,5],[4,5,7],[1,4,5],[1,3,6],[1,2,8],[5,7,9],[1,3,8],[0,2,3,5,6,7,8,9],[0,5,8],[3,4,6],[1,3,4],[5,7,9],[1,6,8],[0,2,3],[1,2,6],[5,7,9]],"punct":[12,23],"passos":[-15,0,-8,-4,-13,7,1,-5,-7,14],"p":127,"a":[33,49,27,121,96,74,112,10,62,110],"b":[49,42,60,1,120,125,64,114,110,0],"g":14,"h":829} };
+const $ = id => document.getElementById(id);
+let code = null;
+function get() { const p = +$("p").value; if (!code || code.p !== p) code = PU.build(p, PARAMS[p]); return code; }
+function loss() { return Math.max(0, Math.min(0.5, +$("loss").value / 100)); }
+const pct = x => (100 * x).toFixed(1) + "%";
+const cssv = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+function refreshInfo() {
+  const c = get();
+  $("info").textContent = `n = ${c.n} transmitted, k = ${c.K} data (rate ${(c.K / c.n).toFixed(2)}), ${c.R} equations (${c.M} sparse + 16 dense); ` +
+    `${c.always.length} variables never transmitted. Loss ${pct(loss())} = ${Math.round(loss() * c.n)} packets.`;
+}
+["p", "loss"].forEach(i => $(i).addEventListener("input", refreshInfo));
+
+$("one").onclick = () => {
+  const c = get(), rnd = PU.mulberry32(+$("seed").value), lost = PU.sampleLost(c.n, Math.round(loss() * c.n), rnd);
+  const how = new Uint8Array(c.V), r = PU.analyze(c, lost, how);
+  const COLS = 80, cell = 10, rowsN = Math.ceil(c.n / COLS), cv = $("cv");
+  cv.width = COLS * cell; cv.height = rowsN * cell; const g = cv.getContext("2d");
+  const isLost = new Uint8Array(c.n); lost.forEach(s => isLost[s] = 1);
+  for (let s = 0; s < c.n; s++) {
+    const v = c.tx[s], par = v >= c.K;
+    let col = par ? cssv("--par") : cssv("--rx");
+    if (isLost[s]) col = how[v] === 1 ? cssv("--peel") : how[v] === 2 ? cssv("--ge") : cssv("--bad");
+    g.fillStyle = col; g.fillRect((s % COLS) * cell + 1, Math.floor(s / COLS) * cell + 1, cell - 2, cell - 2);
+  }
+  const hidden = c.always.length;
+  $("oneout").innerHTML = `${lost.length} of ${c.n} packets lost (${pct(lost.length / c.n)}); ${hidden} more variables are never transmitted.<br>` +
+    `Unknowns: ${lost.length + hidden}. Resolved by peeling: ${r.peeled}. Left for Gaussian elimination: ${r.residual} (rank reached ${r.rank}).<br>` +
+    `Result: <span class="${r.ok ? "ok" : "no"}">${r.ok ? "everything recovered" : "NOT decodable (erased columns of H are dependent)"}</span>`;
+};
+
+$("mc").onclick = async () => {
+  const c = get(), T = Math.max(10, +$("trials").value | 0), btn = $("mc");
+  const losses = $("losses").value.split(/[ ,;]+/).filter(Boolean).map(x => +x / 100);
+  const ref = { 37: { 0.175: "0 / 150,000", 0.19: "1.3e-4", 0.195: "2.4%" } }[c.p] || {};
+  btn.disabled = true; let html = "<table><tr><th>loss</th><th>erased</th><th>failures</th><th>rate</th><th>95% CI</th><th>peeling only</th><th>paper (p=37)</th></tr>";
+  for (const L of losses) {
+    $("mcout").innerHTML = html + `<tr><td>${pct(L)}</td><td colspan=6>running&hellip;</td></tr></table>`;
+    await new Promise(r => setTimeout(r, 20));
+    const s = PU.simulate(c, L, T, +$("seed").value);
+    html += `<tr><td>${pct(L)}</td><td>${s.erased}</td><td>${s.failures}/${T}</td><td>${s.rate.toExponential(2)}</td>` +
+      `<td>[${s.lo.toExponential(1)}, ${s.hi.toExponential(1)}]</td><td>${pct(s.peelOnly)}</td><td>${ref[L] || ""}</td></tr>`;
+  }
+  $("mcout").innerHTML = html + "</table>"; btn.disabled = false;
+};
+
+$("rt").onclick = () => {
+  const c = get(), bytes = new TextEncoder().encode($("msg").value), S = Math.max(1, Math.ceil(bytes.length / c.K));
+  const data = new Uint8Array(c.K * S); data.set(bytes);
+  const pk = PU.encode(c, data, S), rnd = PU.mulberry32(+$("seed").value);
+  const lost = PU.sampleLost(c.n, Math.round(loss() * c.n), rnd), rec = new Uint8Array(c.n).fill(1); lost.forEach(s => rec[s] = 0);
+  const r = PU.decode(c, pk.map((x, s) => rec[s] ? x : null), rec, S);
+  const out = r.ok ? new TextDecoder().decode(r.data.slice(0, bytes.length)) : null;
+  $("rtout").innerHTML = `${bytes.length} bytes &rarr; ${c.K} symbols of ${S} byte(s) &rarr; ${c.n} packets; ${lost.length} lost (${pct(lost.length / c.n)}).<br>` +
+    (r.ok ? `<span class="ok">Recovered:</span> ${out.replace(/[<&]/g, ch => ch === "<" ? "&lt;" : "&amp;")}<br>Identical to the input: <b>${out === $("msg").value}</b>`
+          : `<span class="no">Decoding failed</span> at this loss and seed. Try a lower loss or another seed.`);
+};
+refreshInfo();
+</script>
+</body>
+</html>

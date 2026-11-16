@@ -28,6 +28,9 @@ O Prime-Ulam ganha do 5G NR em recuperação e simplicidade; perde do RaptorQ e 
 ## Estrutura do repositório
 
 ```
+primeulam/   pacote Python do protótipo (construção, codificador, decodificador, CLI)
+docs/demo/   demonstração no navegador (HTML + JavaScript, sem dependências)
+tests/       testes (pytest) e verificação cruzada Python x JavaScript
 docs/        relatorio_tecnico.md (+ .pdf), briefing de novembro de 2026 (ponto de partida)
 src/
   construction/  pu3.py (v3 regular), v4.py, v5.py (irregular), fair.py (v5+G, construção final), gauss_dense.py
@@ -41,6 +44,17 @@ data/
   matrices/  matrizes da primeira geração (xlsx)
 results/     saídas brutas (json e log) de todos os experimentos citados no relatório
 ```
+
+## Teste rápido por terceiros (protótipo)
+
+Além dos scripts originais, o repositório traz um protótipo para quem quer testar o modelo sem ler o código antigo:
+
+- **No navegador, sem instalar nada:** abra `docs/demo/index.html` (ou publique `docs/` no GitHub Pages). Simula perdas, mostra o decodificador trabalhando e reproduz a taxa de falha do artigo.
+- **Linha de comando (Python):** `pip install -e .` e depois `primeulam selftest`, `primeulam simulate --p 37 --loss 0.175 0.195`, ou o ciclo completo com arquivo real: `primeulam encode` → `primeulam lose` → `primeulam decode`.
+- **API Python:** `from primeulam import PrimeUlamCode` (codificador e decodificador reais, só XOR).
+- **Testes automáticos e CI:** `pytest` confere taxa, ausência de ciclos-4, igualdade byte a byte com `data/codes/`, ida e volta de dados e a taxa de falha publicada.
+
+O roteiro completo, com "o que o artigo afirma → como verificar", está em [`TESTING.md`](TESTING.md). Relatos de teste (inclusive os que discordam do artigo) entram como issues com o modelo *Test report*.
 
 ## Reproduzir
 

@@ -4,3 +4,5 @@ pudec
 xorbw
 *.o
 .DS_Store
+*.egg-info/
+.pytest_cache/
