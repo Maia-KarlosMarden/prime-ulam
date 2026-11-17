@@ -71,7 +71,7 @@
   </section>
 
   <section>
-    <h2>3. Send a message through a lossy channel</h2>
+    <h2 id="rtTitle">3. Send a message through a lossy channel</h2>
     <textarea id="msg">Hello from Prime-Ulam! This text is split into data symbols, encoded, partly destroyed and rebuilt.</textarea>
     <p><button id="rt">Encode, lose packets, decode</button> <small>(uses the loss % and seed above)</small></p>
     <div id="rtout" class="out"></div>
@@ -108,6 +108,7 @@ const cssv = n => getComputedStyle(document.documentElement).getPropertyValue(n)
 
 function refreshInfo() {
   const c = get();
+  $("rtTitle").textContent = "3. Send a message through a lossy channel \u2014 " + (c.label || "Prime-Ulam") + " (p = " + (c.p || +$("p").value) + ")";
   const shape = c.label
     ? `${c.R} checks, each data symbol in 4 of them; no variable is untransmitted`
     : `${c.R} equations (${c.M} sparse + 16 dense); ${c.always.length} variables never transmitted`;
