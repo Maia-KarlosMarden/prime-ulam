@@ -1,3 +1,6 @@
+/* Copyright 2026 Karlos Marden Maia
+ * SPDX-License-Identifier: Apache-2.0
+ * Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files. */
 const fs = require("fs"), path = require("path");
 const PU = require(path.join(__dirname, "..", "docs", "demo", "primeulam.js"));
 const kase = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));

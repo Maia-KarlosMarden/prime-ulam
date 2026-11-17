@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 import json, sys, random, openpyxl
 from openpyxl.styles import Font
 sys.path.insert(0, sys.argv[1])

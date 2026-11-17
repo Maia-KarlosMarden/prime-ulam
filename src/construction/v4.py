@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Prime-Ulam v4: fórmula com graus IRREGULARES.
  32 braços x p posições radiais (p primo >= 37)  ->  K = 32p dados;  8 famílias de espirais -> M = 8p equações; taxa 0,80.
  Cada braço participa de um subconjunto das famílias (seu grau). Família c, passo s_c: pontos com j + s_c*i = l (mod p).

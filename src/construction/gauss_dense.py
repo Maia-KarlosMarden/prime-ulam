@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Equações densas por FÓRMULA (ideia do Karlos, traduzida para GF(2)):
  ponto (braço i, raio j) -> inteiro gaussiano z = i + j·I mod p.  Equação k tem centro c_k = a_k + b_k·I.
  bit entra na equação k  <=>  Norma(z - c_k) = (i-a_k)^2 + (j-b_k)^2 é resíduo quadrático (não nulo) mod p.

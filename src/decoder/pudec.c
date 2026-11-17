@@ -1,3 +1,6 @@
+/* Copyright 2026 Karlos Marden Maia
+ * SPDX-License-Identifier: Apache-2.0
+ * Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files. */
 /* Decodificador de apagamentos para o código Prime-Ulam final: peeling nas equações esparsas + eliminação GF(2) no resíduo
    (densas incluídas só quando o peeling trava). Pacotes de T bytes. Implementação direta, sem SIMD explícito.
    uso: ./pudec code.txt T trials f1,f2,...  */

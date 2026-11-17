@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Cross-check the JavaScript port (docs/demo/primeulam.js) against the Python reference.
 
 Python draws erasure patterns and computes the verdict; Node must reproduce the C-format export

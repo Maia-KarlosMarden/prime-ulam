@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Encoder and decoder: peeling on the sparse equations, then Gaussian elimination over GF(2).
 
 The encoder is the decoder with every parity symbol treated as an unknown (as in

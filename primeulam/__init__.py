@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Prime-Ulam LDPC: erasure codes generated from modular spirals.
 
 Reference implementation of the construction in the paper (Sections 3.1-3.6).

@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Construction of the Prime-Ulam LDPC code from the formulas of the paper.
 
 Nothing here stores a parity-check matrix: ``rows``/``cols`` are *derived* from the

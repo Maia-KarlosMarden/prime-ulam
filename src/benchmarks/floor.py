@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Piso de erro com amostras grandes: só decodificação por posto (ML), mesmos padrões para os 3 códigos, intervalo de Wilson 95%.
 uso: python3 -I floor.py <dir v4> <dir 5G> <p> <T> <frações separadas por vírgula> <código: 0=v5 1=5G 2=PEG>"""
 import sys, os, random, json, time, math

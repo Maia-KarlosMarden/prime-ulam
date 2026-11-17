@@ -1,3 +1,5 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
 name: ci
 on: [push, pull_request]
 jobs:

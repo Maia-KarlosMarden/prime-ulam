@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Controle: matriz regular aleatória + redução de ciclos-4 por troca de arestas (sem geometria)."""
 import sys, random, numpy as np
 sys.path.insert(0, sys.argv[1])

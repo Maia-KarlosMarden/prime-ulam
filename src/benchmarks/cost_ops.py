@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Custo de decodificação (em XORs de pacote) para v5, v5+densas e 5G NR: peeling + eliminação gaussiana na parte residual.
  1 'XOR de pacote' = XOR de dois pacotes de T bytes (o mesmo vale para qualquer T).
 uso: python3 -I cost_ops.py <dir v4> <dir 5G> <p> <padrões> <r densas>"""

@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Teste: v5 + r equações densas (metade dos bits de dados cada) com r bits de paridade extras transmitidos."""
 import sys, random, json, os, math
 HERE, BG, P, T, R_ = sys.argv[1], sys.argv[2], int(sys.argv[3]), int(sys.argv[4]), int(sys.argv[5]); sys.argv = [sys.argv[0], HERE, BG]; sys.path.insert(0, HERE)

@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Prime-Ulam v3: construção por FÓRMULA (nada armazenado), para qualquer primo p >= 17.
  Geometria: 16 braços (i = 0..15) x p posições radiais (j em Z_p)  ->  K = 16p bits de dados.
  Equações: 4 famílias de espirais; a família c com passo s_c contém os pontos com j + s_c*i = l (mod p).

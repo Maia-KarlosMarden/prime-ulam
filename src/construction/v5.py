@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Prime-Ulam v5: fórmula irregular + braços NÃO transmitidos + cadeia de paridade fechada.
  A braços x p posições radiais (p primo > A); todos são dados (K = A*p), mas os braços 'punct' não são transmitidos.
  MB famílias de espirais -> M = MB*p equações e M paridades. Transmitidos: n = (A - |punct| + MB)*p = 40p; taxa 0,80.

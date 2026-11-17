@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 import sys, random, json
 HERE, BG, P = sys.argv[1], sys.argv[2], int(sys.argv[3]); sys.argv = [sys.argv[0], HERE, BG]; sys.path.insert(0, HERE)
 from v5 import build, prep

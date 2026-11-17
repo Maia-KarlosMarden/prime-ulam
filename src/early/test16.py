@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Testa as 16 matrizes do xlsx: [H|I] vs [H|acumulador], padrões pareados."""
 import sys, random, math, itertools, openpyxl
 sys.path.insert(0, sys.argv[2])

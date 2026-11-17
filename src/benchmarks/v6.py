@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Prime-Ulam v6: repolimento dos coeficientes da cadeia por aprendizado ativo.
  A cada rodada: (1) sorteia apagamentos a 19%, (2) coleta as palavras-código de baixo peso que causaram falha (qualquer nº de bits de dados),
  (3) reotimiza (a,b) para afastar TODAS as coletadas até agora + palavras de 1-2 bits, (4) repete. No fim, reprojeta a ordem de envio.

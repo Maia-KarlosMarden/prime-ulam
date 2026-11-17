@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Valida minha montagem do 5G NR (compare.build_5g) contra o codificador de referência Sionna (3GPP TS 38.212)."""
 import sys, numpy as np, torch
 import os

@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Comparação no mesmo (k, n): Prime-Ulam v3 (fórmula)  x  5G NR LDPC (TS 38.212)  x  PEG + acumulador.
 uso: python3 -I compare.py <p> <T> <dir pu3> <dir com 5G_bg*.csv>"""
 import sys, json, random, time

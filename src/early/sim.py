@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Prime-Ulam LDPC — teste do piso de erro da estrutura [H | I] e de alternativas.
 n=320, k=256, m=64; peso de coluna 4, peso de linha 16 (parte de dados)."""
 import random, math, sys

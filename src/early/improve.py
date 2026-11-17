@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Prime-Ulam v2: melhora cada matriz H (64x256) em três etapas.
  1) remove ciclos-4 por troca de arestas (mantém graus 16/4)
  2) paridade em acumulador; ordem das linhas minimiza palavras-código de peso baixo

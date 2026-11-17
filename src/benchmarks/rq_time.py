@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 import raptorq, os, random, time, sys
 def run(k, n, T, trials, fracs):
     data = os.urandom(k * T); enc = raptorq.Encoder.with_defaults(data, T + 4); pk = enc.get_encoded_packets(n - k); assert len(pk) == n

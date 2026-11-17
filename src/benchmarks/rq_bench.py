@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """RaptorQ (biblioteca Rust via pip 'raptorq'): taxa de sucesso em apagamentos aleatórios e tempo de decodificação, nos mesmos (k, n)."""
 import raptorq, os, random, time, json, sys
 def trial(pk, e, rng, dec_args, data):

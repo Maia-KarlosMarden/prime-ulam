@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Equaliza a comparação de rajadas: os 3 códigos recebem a MESMA busca de ordem de envio.
  Família G1: intercalador de passo único   tx[t] = base[(s*t) mod n]            (1 inteiro)
  Família G2: dados e paridades em fluxos separados, passos g e h, mesclados na proporção do código (2 inteiros; mesma forma da v5)

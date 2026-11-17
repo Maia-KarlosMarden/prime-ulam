@@ -1,3 +1,6 @@
+/* Copyright 2026 Karlos Marden Maia
+ * SPDX-License-Identifier: Apache-2.0
+ * Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files. */
 /* Prime-Ulam LDPC - JavaScript port of the reference implementation (primeulam/*.py).
  * Works in the browser (window.PU) and in Node (module.exports). No dependencies.
  * Same formulas as paper Sections 3.2-3.6; peeling on the sparse equations, then GF(2) elimination. */

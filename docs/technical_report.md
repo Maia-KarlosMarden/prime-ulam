@@ -226,7 +226,7 @@ The limitations below delimit what the results support. None of them invalidates
 
 ## 9. Scope and release
 
-The author does not intend to file a patent. The construction, the code, the data and this report are released under the Apache License 2.0, so that the method is public, documented and reproducible. Publication also serves as prior art: a public, dated description of the construction makes it harder for others to obtain a patent on the same construction later. The Apache License 2.0 contains an express patent grant from contributors and ends that grant for anyone who sues over patent infringement in this work. It grants no rights over third-party patents. The statement that no patent will be filed is a declaration of intent, not a license. No legal analysis of patentability is given or implied.
+The author does not intend to file a patent. The construction, the code, the data and this report are released under the Apache License 2.0 so that the method is public, documented and reproducible. Publication is also prior art, which makes it harder for others to patent the same construction later. The Apache License 2.0 contains an express patent grant from contributors and ends that grant for anyone who sues over patent infringement in this work. It grants no rights over third-party patents. The no-patent statement is an intention, not a license.
 
 The reasoning behind the decision, in short:
 

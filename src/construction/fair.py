@@ -1,3 +1,6 @@
+# Copyright 2026 Karlos Marden Maia
+# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0; see the LICENSE and NOTICE files.
 """Comparação em taxa IDÊNTICA (k=32p, n=40p): v5 pura  x  v5 + 16 densas gaussianas com 16 paridades esparsas NÃO transmitidas  x  5G NR.
 As 16 paridades perfuradas ficam espaçadas uniformemente na cadeia e viram incógnitas (como os braços perfurados).
 uso: python3 -I fair.py <dir v4> <dir 5G> <p> <padrões> <frações>"""
