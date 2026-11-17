@@ -40,7 +40,7 @@
 
   <section>
     <h2>Settings</h2>
-    <label>Code <select id="alg"><option value="pu">Prime-Ulam</option><option value="pega">PEG + accumulator</option><option value="peg">PEG, [H | I] (identity parities)</option></select></label>
+    <label>Code <select id="alg"><option value="pu">Prime-Ulam</option><option value="pega">PEG + accumulator</option><option value="peg">PEG, [H | I] (identity parities)</option><option value="nr">5G NR LDPC (BG1)</option></select></label>
     <label>Prime p <select id="p"><option>37</option><option>127</option></select></label>
     <label>Packet loss <input id="loss" type="number" min="0" max="40" step="0.5" value="15"> %</label>
     <label>Seed <input id="seed" type="number" value="1" style="width:6em"></label>
@@ -85,6 +85,7 @@
 </main>
 <script src="primeulam.js"></script>
 <script src="peg_codes.js"></script>
+<script src="nr_codes.js"></script>
 <script>
 const PARAMS = { 37: {"soma":294.0,"perfil":"b 2P8 + 30x3","MB":10,"masks":[[6,7,9],[4,6,9],[0,2,6],[1,4,5],[0,6,9],[2,6,8],[3,4,9],[1,7,8],[2,4,8],[2,3,4],[0,4,5],[0,7,8],[0,1,2,4,6,7,8,9],[1,3,7],[0,3,5],[0,8,9],[2,3,5],[4,5,7],[1,4,5],[1,3,6],[1,2,8],[5,7,9],[1,3,8],[0,2,3,5,6,7,8,9],[0,5,8],[3,4,6],[1,3,4],[5,7,9],[1,6,8],[0,2,3],[1,2,6],[5,7,9]],"punct":[12,23],"passos":[-15,0,-8,-4,-13,7,1,-5,-7,14],"p":37,"a":[12,17,14,14,7,32,16,29,10,15],"b":[2,17,18,0,8,3,31,27,18,23],"g":20,"h":61}, 127: {"soma":294.0,"perfil":"b 2P8 + 30x3","MB":10,"masks":[[6,7,9],[4,6,9],[0,2,6],[1,4,5],[0,6,9],[2,6,8],[3,4,9],[1,7,8],[2,4,8],[2,3,4],[0,4,5],[0,7,8],[0,1,2,4,6,7,8,9],[1,3,7],[0,3,5],[0,8,9],[2,3,5],[4,5,7],[1,4,5],[1,3,6],[1,2,8],[5,7,9],[1,3,8],[0,2,3,5,6,7,8,9],[0,5,8],[3,4,6],[1,3,4],[5,7,9],[1,6,8],[0,2,3],[1,2,6],[5,7,9]],"punct":[12,23],"passos":[-15,0,-8,-4,-13,7,1,-5,-7,14],"p":127,"a":[33,49,27,121,96,74,112,10,62,110],"b":[49,42,60,1,120,125,64,114,110,0],"g":14,"h":829} };
 const $ = id => document.getElementById(id);
@@ -94,7 +95,10 @@ function get() {
   const p = +$("p").value, alg = $("alg").value, key = alg + p;
   if (!cache[key]) {
     if (alg === "pu") cache[key] = PU.build(p, PARAMS[p]);
-    else {
+    else if (alg === "nr") {
+      const d = window.NR_CODES[String(p)];
+      cache[key] = PU.fromRaw(d.K, d.R, d.V, d.rows, d.tx, d.always, d.label);
+    } else {
       const d = window.PEG_CODES[String(p)];
       const label = alg === "pega" ? "PEG + accumulator" : "PEG, [H | I]";
       cache[key] = PU.fromLists(d.K, d.M, d.data, alg === "pega" ? d.acc : d.ident, d.tx, label);
@@ -108,9 +112,10 @@ const cssv = n => getComputedStyle(document.documentElement).getPropertyValue(n)
 
 function refreshInfo() {
   const c = get();
-  $("rtTitle").textContent = "3. Send a message through a lossy channel \u2014 " + (c.label || "Prime-Ulam") + " (p = " + (c.p || +$("p").value) + ")";
+  const sizeTag = c.p ? `p = ${c.p}` : `n = ${c.n}`;
+  $("rtTitle").textContent = "3. Send a message through a lossy channel \u2014 " + (c.label || "Prime-Ulam") + " (" + sizeTag + ")";
   const shape = c.label
-    ? `${c.R} checks, each data symbol in 4 of them; no variable is untransmitted`
+    ? `${c.R} checks; ${c.always.length} variables never transmitted`
     : `${c.R} equations (${c.M} sparse + 16 dense); ${c.always.length} variables never transmitted`;
   $("info").textContent = `${c.label ? c.label + ": " : ""}n = ${c.n} transmitted, k = ${c.K} data (rate ${(c.K / c.n).toFixed(2)}), ${shape}. ` +
     `Loss ${pct(loss())} = ${Math.round(loss() * c.n)} packets.`;

@@ -56,6 +56,15 @@
     return { p: null, label, K, M, n, R, V, cols, rows, tx: tx.slice(), always: [] };
   }
 
+  /* Generic code from raw data: rowsPerVar[v] lists the checks of variable v (V = K + parities).
+   * tx: transmission order (variable indices); always: variables never transmitted. */
+  function fromRaw(K, R, V, rowsPerVar, tx, always, label) {
+    const cols = rowsPerVar.map(rs => Array.from(new Set(rs)).sort((a, b) => a - b));
+    const rows = Array.from({ length: R }, () => []);
+    cols.forEach((cs, v) => cs.forEach(r => rows[r].push(v)));
+    return { p: null, label, K, M: R, n: tx.length, R, V, cols, rows, tx: tx.slice(), always: always.slice() };
+  }
+
   function toCFormat(c) {
     const out = [`${c.V} ${c.K} ${c.R} ${c.n} ${c.always.length} ${c.M}`, c.always.join(" "), c.tx.join(" ")];
     for (const cs of c.cols) out.push(`${cs.length} ${cs.join(" ")}`);
@@ -170,6 +179,6 @@
     return { loss, erased: e, trials, failures: fail, rate: fail / trials, lo, hi, peelOnly: peelOnly / trials };
   }
 
-  const PU = { build, fromLists, toCFormat, encode, decode, analyze, simulate, sampleLost, mulberry32, wilson };
+  const PU = { build, fromLists, fromRaw, toCFormat, encode, decode, analyze, simulate, sampleLost, mulberry32, wilson };
   if (typeof module !== "undefined" && module.exports) module.exports = PU; else root.PU = PU;
 })(typeof window !== "undefined" ? window : globalThis);
