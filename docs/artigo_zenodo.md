@@ -8,6 +8,8 @@ lang: en
 
 **Code and data:** https://github.com/Maia-KarlosMarden/prime-ulam
 
+**Copyright © 2026 Karlos Marden Maia.** The text, code and data are licensed under the Apache License 2.0 (see the LICENSE and NOTICE files).
+
 **License:** Apache License 2.0 for the text, code and data.
 
 **Reproducibility:** every formula in this paper is implemented in the repository. Section 10 and Appendix A give the commands and the check that reconstructs the released code from the formulas in this text.
