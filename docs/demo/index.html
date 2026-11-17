@@ -162,7 +162,7 @@ $("rt").onclick = () => {
   const lost = PU.sampleLost(c.n, Math.round(loss() * c.n), rnd), rec = new Uint8Array(c.n).fill(1); lost.forEach(s => rec[s] = 0);
   const r = PU.decode(c, pk.map((x, s) => rec[s] ? x : null), rec, S);
   const out = r.ok ? new TextDecoder().decode(r.data.slice(0, bytes.length)) : null;
-  $("rtout").innerHTML = `${bytes.length} bytes &rarr; ${c.K} symbols of ${S} byte(s) &rarr; ${c.n} packets; ${lost.length} lost (${pct(lost.length / c.n)}).<br>` +
+  $("rtout").innerHTML = `<b>Code: ${c.label || "Prime-Ulam"} (${c.p ? "p = " + c.p : "n = " + c.n})</b><br>${bytes.length} bytes &rarr; ${c.K} symbols of ${S} byte(s) &rarr; ${c.n} packets; ${lost.length} lost (${pct(lost.length / c.n)}).<br>` +
     (r.ok ? `<span class="ok">Recovered:</span> ${out.replace(/[<&]/g, ch => ch === "<" ? "&lt;" : "&amp;")}<br>Identical to the input: <b>${out === $("msg").value}</b>`
           : `<span class="no">Decoding failed</span> at this loss and seed. Try a lower loss or another seed.`);
 };
