@@ -8,7 +8,7 @@ lang: en
 
 **Code and data:** https://github.com/Maia-KarlosMarden/prime-ulam
 
-**License:** CC0 1.0 Universal (public domain dedication) for the text, code and data.
+**License:** MIT License for the text, code and data.
 
 **Reproducibility:** every formula in this paper is implemented in the repository. Section 10 and Appendix A give the commands and the check that reconstructs the released code from the formulas in this text.
 
@@ -221,7 +221,7 @@ These are assessments based on the measured properties, not field tests. None of
 
 # 9. Scope and release
 
-The author does not intend to file a patent. The construction, the code and this paper are released so that the method is public, documented and reproducible. Publication also serves as prior art: a public, dated description of the construction makes it harder for others to obtain a patent on the same construction later. The text, code and data are dedicated to the public domain under CC0 1.0 Universal. No copyright is reserved, and the method is free to use for any purpose. CC0 neither grants nor removes patent rights; the statement that the author does not intend to file a patent is a declaration of intent, not a license.
+The author does not intend to file a patent. The construction, the code and this paper are released so that the method is public, documented and reproducible. Publication also serves as prior art: a public, dated description of the construction makes it harder for others to obtain a patent on the same construction later. The text, code and data are released under the MIT License, which permits use, modification and redistribution for any purpose, including commercial use, with the copyright notice kept. The MIT License does not address patents: it neither grants nor removes patent rights, and the statement that the author does not intend to file a patent is a declaration of intent, not a license.
 
 This paper gives no legal analysis of patentability, and none is implied.
 

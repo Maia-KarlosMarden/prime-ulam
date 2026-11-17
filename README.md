@@ -2,7 +2,7 @@
 
 A family of erasure-correcting codes generated entirely by formula: one prime number, 34 small integers and one 32-row incidence table describe a complete code, with no stored parity-check matrix. The construction started from the geometry of the Ulam spiral and evolved into an algebraic structure modulo a prime, with zero length-4 cycles guaranteed by theorem.
 
-**Status (November 2026):** final construction (v5+G) defined and measured against 5G NR, PEG, Reed–Solomon and RaptorQ. Intellectual-property decision made: no patent filing, released under CC0 1.0 (see [License](#license)). Full report in [`docs/technical_report.md`](docs/technical_report.md); paper in [`docs/artigo_zenodo.pdf`](docs/artigo_zenodo.pdf).
+**Status (November 2026):** final construction (v5+G) defined and measured against 5G NR, PEG, Reed–Solomon and RaptorQ. Intellectual-property decision made: no patent filing, released under the MIT License (see [License](#license)). Full report in [`docs/technical_report.md`](docs/technical_report.md); paper in [`docs/artigo_zenodo.pdf`](docs/artigo_zenodo.pdf).
 
 ## Result in one table (rate 0.80, erasure channel)
 
@@ -88,6 +88,6 @@ Note: code comments and console output of the research scripts in `src/` (and th
 
 ## License
 
-Code, data, report and paper are dedicated to the public domain under [CC0 1.0 Universal](LICENSE), a single license for everything (the same as the paper, `pyproject.toml` and the prototype). No copyright is reserved; use is free, including commercial use.
+Code, data, report and paper are released under the [MIT License](LICENSE), a single license for everything (the same as the paper, `pyproject.toml` and the prototype). Use, modification and redistribution are free, including commercial use, provided the copyright notice and license text are kept.
 
-Two clarifications: (1) CC0 neither grants nor removes patent rights: the author declares that the author **does not intend to file a patent** (paper, section 9), and the dated publication also serves as prior art; (2) the license grants no rights over trademarks or third-party patents (for example, those essential to 5G NR cited in the comparison).
+Two clarifications: (1) the MIT License does not mention patents: it neither grants nor removes patent rights. The author declares that the author **does not intend to file a patent** (paper, section 9), and the dated publication also serves as prior art; (2) the license grants no rights over trademarks or third-party patents (for example, those essential to 5G NR cited in the comparison).
