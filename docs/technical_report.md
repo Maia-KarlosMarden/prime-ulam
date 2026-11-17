@@ -2,6 +2,8 @@
 
 November 16, 2026 · Karlos Marden Maia (Independent Researcher)
 
+**Copyright © 2026 Karlos Marden Maia.** Licensed under the Apache License 2.0 (see the LICENSE and NOTICE files).
+
 ## Executive summary
 
 Prime-Ulam LDPC is a family of erasure-correcting codes generated entirely by formula: a prime number, 34 small integers and one 32-row incidence table (106 memberships) describe a complete code, with no stored parity-check matrix. In the final version, on the erasure channel at rate 0.80, the code recovers the data with a failure rate below 1 in 150,000 at 17.5% loss, outperforms the 5G NR LDPC code in the moderate-loss regime at 1,480 symbols (and ties it up to 19% loss at 5,080 symbols), and decodes at 2.5 to 3.7 GB/s at losses up to 15%, using only XOR operations.
