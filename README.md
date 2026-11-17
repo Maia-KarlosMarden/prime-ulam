@@ -1,5 +1,7 @@
 # Prime-Ulam LDPC
 
+**Try it in the browser:** [interactive demo](https://maia-karlosmarden.github.io/prime-ulam/demo/) · [paper (PDF)](https://maia-karlosmarden.github.io/prime-ulam/artigo_zenodo.pdf)
+
 A family of erasure-correcting codes generated entirely by formula: one prime number, 34 small integers and one 32-row incidence table describe a complete code, with no stored parity-check matrix. The construction started from the geometry of the Ulam spiral and evolved into an algebraic structure modulo a prime, with zero length-4 cycles guaranteed by theorem.
 
 **Status (November 2026):** final construction (v5+G) defined and measured against 5G NR, PEG, Reed–Solomon and RaptorQ. Intellectual-property decision made: no patent filing, released under the Apache License 2.0 (see [License](#license)). Full report in [`docs/technical_report.md`](docs/technical_report.md); paper in [`docs/artigo_zenodo.pdf`](docs/artigo_zenodo.pdf).
