@@ -8,7 +8,7 @@ lang: en
 
 **Code and data:** https://github.com/Maia-KarlosMarden/prime-ulam
 
-**License:** MIT License for the text, code and data.
+**License:** Apache License 2.0 for the text, code and data.
 
 **Reproducibility:** every formula in this paper is implemented in the repository. Section 10 and Appendix A give the commands and the check that reconstructs the released code from the formulas in this text.
 
@@ -221,7 +221,7 @@ These are assessments based on the measured properties, not field tests. None of
 
 # 9. Scope and release
 
-The author does not intend to file a patent. The construction, the code and this paper are released so that the method is public, documented and reproducible. Publication also serves as prior art: a public, dated description of the construction makes it harder for others to obtain a patent on the same construction later. The text, code and data are released under the MIT License, which permits use, modification and redistribution for any purpose, including commercial use, with the copyright notice kept. The MIT License does not address patents: it neither grants nor removes patent rights, and the statement that the author does not intend to file a patent is a declaration of intent, not a license.
+The author does not intend to file a patent. The construction, the code and this paper are released so that the method is public, documented and reproducible. Publication also serves as prior art: a public, dated description of the construction makes it harder for others to obtain a patent on the same construction later. The text, code and data are released under the Apache License 2.0, which permits use, modification and redistribution for any purpose, including commercial use, with the copyright notice and the license text kept. The license contains an express patent grant from contributors and terminates that grant for anyone who sues over patent infringement in this work. It grants no rights over third-party patents, and it does not change the fact that the public, dated description of the construction is prior art. The statement that the author does not intend to file a patent is a declaration of intent, not a license.
 
 This paper gives no legal analysis of patentability, and none is implied.
 

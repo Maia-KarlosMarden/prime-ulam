@@ -2,7 +2,7 @@
 
 A family of erasure-correcting codes generated entirely by formula: one prime number, 34 small integers and one 32-row incidence table describe a complete code, with no stored parity-check matrix. The construction started from the geometry of the Ulam spiral and evolved into an algebraic structure modulo a prime, with zero length-4 cycles guaranteed by theorem.
 
-**Status (November 2026):** final construction (v5+G) defined and measured against 5G NR, PEG, Reed–Solomon and RaptorQ. Intellectual-property decision made: no patent filing, released under the MIT License (see [License](#license)). Full report in [`docs/technical_report.md`](docs/technical_report.md); paper in [`docs/artigo_zenodo.pdf`](docs/artigo_zenodo.pdf).
+**Status (November 2026):** final construction (v5+G) defined and measured against 5G NR, PEG, Reed–Solomon and RaptorQ. Intellectual-property decision made: no patent filing, released under the Apache License 2.0 (see [License](#license)). Full report in [`docs/technical_report.md`](docs/technical_report.md); paper in [`docs/artigo_zenodo.pdf`](docs/artigo_zenodo.pdf).
 
 ## Result in one table (rate 0.80, erasure channel)
 
@@ -88,6 +88,6 @@ Note: code comments and console output of the research scripts in `src/` (and th
 
 ## License
 
-Code, data, report and paper are released under the [MIT License](LICENSE), a single license for everything (the same as the paper, `pyproject.toml` and the prototype). Use, modification and redistribution are free, including commercial use, provided the copyright notice and license text are kept.
+Code, data, report and paper are released under the [Apache License 2.0](LICENSE), a single license for everything (the same as the paper, `pyproject.toml` and the prototype). Use, modification and redistribution are free, including commercial use, provided the copyright notice, the license text and the [NOTICE](NOTICE) file are kept. Contributions you submit are licensed under the same terms.
 
-Two clarifications: (1) the MIT License does not mention patents: it neither grants nor removes patent rights. The author declares that the author **does not intend to file a patent** (paper, section 9), and the dated publication also serves as prior art; (2) the license grants no rights over trademarks or third-party patents (for example, those essential to 5G NR cited in the comparison).
+Three clarifications: (1) the Apache License 2.0 includes an express patent license from contributors for the claims their contributions necessarily infringe, and ends that license for anyone who sues over patent infringement in this work. The author declares that the author **does not intend to file a patent** (paper, section 9), and the dated publication also serves as prior art; (2) the license grants no rights to the names or trademarks of the project (section 6 of the license); (3) it grants no rights over third-party patents, for example those essential to 5G NR cited in the comparison.
