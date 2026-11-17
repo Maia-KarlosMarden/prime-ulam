@@ -67,6 +67,8 @@ matrix are linearly independent (peeling on the sparse equations first, Gaussian
 
 ## 4. Browser demo
 
+The demo compares Prime-Ulam with two PEG codes at the same block size (n = 40p for p = 37, 127): PEG with accumulator parities and PEG with identity parities `[H | I]`. The PEG matrices are exported in `docs/demo/peg_codes.js` from `src/benchmarks/compare.py::build_peg` with seed `p`, and `tests/test_js_peg_crosscheck.py` checks the verdicts against Python. The 5G NR code is not in the demo yet.
+
 `docs/demo/index.html` is self-contained (`primeulam.js` is a dependency-free port, cross-checked against the
 Python code by `pytest tests/test_js_crosscheck.py`, which needs Node). It can be served by GitHub Pages
 (Settings -> Pages -> Deploy from a branch -> `main` / `docs`; the demo is then at `/demo/`).

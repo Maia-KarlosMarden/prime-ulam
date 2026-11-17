@@ -44,6 +44,18 @@
     return { p, D, K, M, n, R, V, cols: colsA, rows, tx, always };
   }
 
+  /* Generic code from explicit columns: data variables 0..K-1, parities K..K+M-1 (one per equation).
+   * dataRows[v] / parityRows[q]: equation indices of each variable. Every equation is peelable (M = R). */
+  function fromLists(K, M, dataRows, parityRows, tx, label) {
+    const R = M, V = K + M, n = tx.length;
+    const cols = [];
+    for (let v = 0; v < K; v++) cols.push(Array.from(new Set(dataRows[v])).sort((a, b) => a - b));
+    for (let q = 0; q < M; q++) cols.push(Array.from(new Set(parityRows[q])).sort((a, b) => a - b));
+    const rows = Array.from({ length: R }, () => []);
+    cols.forEach((cs, v) => cs.forEach(r => rows[r].push(v)));
+    return { p: null, label, K, M, n, R, V, cols, rows, tx: tx.slice(), always: [] };
+  }
+
   function toCFormat(c) {
     const out = [`${c.V} ${c.K} ${c.R} ${c.n} ${c.always.length} ${c.M}`, c.always.join(" "), c.tx.join(" ")];
     for (const cs of c.cols) out.push(`${cs.length} ${cs.join(" ")}`);
@@ -158,6 +170,6 @@
     return { loss, erased: e, trials, failures: fail, rate: fail / trials, lo, hi, peelOnly: peelOnly / trials };
   }
 
-  const PU = { build, toCFormat, encode, decode, analyze, simulate, sampleLost, mulberry32, wilson };
+  const PU = { build, fromLists, toCFormat, encode, decode, analyze, simulate, sampleLost, mulberry32, wilson };
   if (typeof module !== "undefined" && module.exports) module.exports = PU; else root.PU = PU;
 })(typeof window !== "undefined" ? window : globalThis);
