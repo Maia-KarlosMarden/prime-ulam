@@ -1,7 +1,7 @@
 # Testing Prime-Ulam LDPC (for third parties)
 
 This repository ships a small prototype so you can check the claims of the paper
-(`docs/artigo_zenodo.pdf`) yourself, without trusting the authors' numbers.
+(`docs/Maia_Prime-Ulam-ldpc.pdf`) yourself, without trusting the authors' numbers.
 Pick the path that fits you; each takes minutes.
 
 | You want to... | Do this |

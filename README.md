@@ -1,10 +1,10 @@
 # Prime-Ulam LDPC
 
-**Try it in the browser:** [interactive demo](https://maia-karlosmarden.github.io/prime-ulam/demo/) · [paper (PDF)](https://maia-karlosmarden.github.io/prime-ulam/artigo_zenodo.pdf)
+**Try it in the browser:** [interactive demo](https://maia-karlosmarden.github.io/prime-ulam/demo/) · [paper (PDF)](https://maia-karlosmarden.github.io/prime-ulam/Maia_Prime-Ulam-ldpc.pdf)
 
 A family of erasure-correcting codes generated entirely by formula: one prime number, 34 small integers and one 32-row incidence table describe a complete code, with no stored parity-check matrix. The construction started from the geometry of the Ulam spiral and evolved into an algebraic structure modulo a prime, with zero length-4 cycles guaranteed by theorem.
 
-**Status (November 2026):** final construction (v5+G) defined and measured against 5G NR, PEG, Reed–Solomon and RaptorQ. Intellectual-property decision made: no patent filing, released under the Apache License 2.0 (see [License](#license)). Full report in [`docs/technical_report.md`](docs/technical_report.md); paper in [`docs/artigo_zenodo.pdf`](docs/artigo_zenodo.pdf).
+**Status (November 2026):** final construction (v5+G) defined and measured against 5G NR, PEG, Reed–Solomon and RaptorQ. Intellectual-property decision made: no patent filing, released under the Apache License 2.0 (see [License](#license)). Full report in [`docs/technical_report.md`](docs/technical_report.md); paper in [`docs/Maia_Prime-Ulam-ldpc.pdf`](docs/Maia_Prime-Ulam-ldpc.pdf).
 
 ## Result in one table (rate 0.80, erasure channel)
 
@@ -33,7 +33,7 @@ Prime-Ulam beats 5G NR in recovery and simplicity; it loses to RaptorQ and Reed�
 primeulam/   Python package of the prototype (construction, encoder, decoder, CLI)
 docs/demo/   in-browser demo (HTML + JavaScript, no dependencies)
 tests/       tests (pytest) and Python x JavaScript cross-check
-docs/        technical_report.md (+ .pdf), artigo_zenodo (paper, .md + .pdf),
+docs/        technical_report.md (+ .pdf), paper (artigo_zenodo.md source, Maia_Prime-Ulam-ldpc.pdf),
              briefing_november_2026.md (starting point)
 src/
   construction/  pu3.py (regular v3), v4.py, v5.py (irregular), fair.py (v5+G, final construction), gauss_dense.py
