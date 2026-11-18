@@ -33,7 +33,7 @@ Prime-Ulam beats 5G NR in recovery and simplicity; it loses to RaptorQ and Reedâ
 primeulam/   Python package of the prototype (construction, encoder, decoder, CLI)
 docs/demo/   in-browser demo (HTML + JavaScript, no dependencies)
 tests/       tests (pytest) and Python x JavaScript cross-check
-docs/        technical_report.md (+ .pdf), paper (artigo_zenodo.md source, Maia_Prime-Ulam-ldpc.pdf),
+docs/        technical_report.md (+ .pdf), paper (Maia_Prime-Ulam-ldpc.md source and .pdf),
              briefing_november_2026.md (starting point)
 src/
   construction/  pu3.py (regular v3), v4.py, v5.py (irregular), fair.py (v5+G, final construction), gauss_dense.py
